@@ -41,18 +41,16 @@ body{font-family:'Georgia',serif;background:var(--bg);color:var(--text);min-heig
 .hiw-text{font-size:14px;color:var(--text2);line-height:1.6;}
 .hiw-text strong{color:var(--text);font-weight:400;}
 .hero-divider{border:none;border-top:0.5px solid var(--border2);margin:2rem 0;}
-
-.progress-bar{max-width:680px;margin:0 auto;padding:0 1.5rem;margin-bottom:0;}
+.progress-bar{max-width:680px;margin:0 auto;padding:0 1.5rem;}
 .progress-track{height:3px;background:var(--border);border-radius:2px;margin-bottom:0.5rem;}
 .progress-fill{height:3px;background:var(--text3);border-radius:2px;transition:width 0.3s;}
 .progress-label{font-size:11px;color:var(--text3);font-family:system-ui,sans-serif;text-align:right;}
-
 .intake{max-width:680px;margin:0 auto;padding:1.5rem 1.5rem 4rem;}
 .step-wrap{margin-bottom:2.5rem;}
 .step-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:0.5rem;display:flex;justify-content:space-between;align-items:center;font-family:system-ui,sans-serif;}
 .step-title{font-size:18px;font-weight:400;color:var(--text);margin-bottom:0.35rem;line-height:1.3;}
 .step-hint{font-size:14px;color:var(--text3);margin-bottom:0.9rem;line-height:1.6;}
-textarea{width:100%;background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--r);padding:0.9rem 1.1rem;font-size:15px;font-family:'Georgia',serif;color:var(--text);line-height:1.65;resize:vertical;outline:none;min-height:90px;transition:border-color 0.15s,background 0.15s,border-width 0.15s;}
+textarea{width:100%;background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--r);padding:0.9rem 1.1rem;font-size:15px;font-family:'Georgia',serif;color:var(--text);line-height:1.65;resize:vertical;outline:none;min-height:90px;transition:border-color 0.15s,background 0.15s;}
 textarea:focus{border-color:var(--border3);background:var(--bg);}
 textarea::placeholder{color:var(--text3);font-style:italic;}
 textarea.has-error{border:2px solid var(--danger-border);background:var(--danger-bg);}
@@ -60,7 +58,7 @@ textarea.has-error{border:2px solid var(--danger-border);background:var(--danger
 .chip{padding:0.55rem 1rem;font-size:13px;font-family:system-ui,sans-serif;color:var(--text2);background:var(--bg);border:0.5px solid var(--border2);border-radius:50px;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
 .chip:hover{border-color:var(--border3);color:var(--text);}
 .chip.on{background:var(--text);color:var(--bg);border-color:var(--text);}
-.chips-wrap.has-error .chips{outline:2px solid var(--danger-border);border-radius:var(--r);padding:8px;}
+.chips-wrap.has-error{outline:2px solid var(--danger-border);border-radius:var(--r);padding:8px;}
 .toggle-wrap{display:flex;align-items:flex-start;gap:12px;padding:1rem 1.1rem;background:var(--gold-bg);border:0.5px solid var(--gold-border);border-radius:var(--r);cursor:pointer;transition:all 0.15s;}
 .toggle-content{flex:1;}
 .toggle-title{font-size:14px;font-weight:400;color:var(--text);margin-bottom:2px;}
@@ -82,13 +80,11 @@ hr{border:none;border-top:0.5px solid var(--border);margin:2rem 0;}
 .loading-text{font-size:14px;color:var(--text3);font-style:italic;margin-top:0.75rem;}
 .spinner{width:28px;height:28px;border:1.5px solid var(--border2);border-top-color:var(--text);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto;}
 @keyframes spin{to{transform:rotate(360deg);}}
-
 .output{display:none;margin-top:2rem;}
 .out-confirm{background:var(--bg2);border-radius:var(--r);padding:0.75rem 1rem;margin-bottom:1.5rem;border-left:3px solid var(--border2);}
 .out-confirm-text{font-size:13px;color:var(--text2);font-family:system-ui,sans-serif;}
 .out-confirm-goal{font-weight:500;color:var(--text);}
-
-.out-core{margin-bottom:1.75rem;}
+.out-section{margin-bottom:1.75rem;}
 .out-section-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:0.4rem;font-family:system-ui,sans-serif;}
 .out-section-desc{font-size:13px;color:var(--text3);margin-bottom:0.7rem;line-height:1.55;}
 .out-card{background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--r);padding:1.25rem 1.4rem;}
@@ -101,26 +97,23 @@ hr{border:none;border-top:0.5px solid var(--border);margin:2rem 0;}
 .out-text{font-size:14px;color:var(--text);line-height:1.85;white-space:pre-wrap;word-break:break-word;font-family:'Georgia',serif;}
 .copy-btn{margin-top:0.9rem;padding:0.65rem 1.2rem;font-size:13px;font-family:system-ui,sans-serif;cursor:pointer;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg);color:var(--text);transition:all 0.15s;}
 .copy-btn:hover{background:var(--bg3);}
-
 .where-to-paste{background:var(--text);color:var(--bg);border-radius:var(--r);padding:1rem 1.25rem;margin-bottom:1.75rem;}
 .wtp-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.6;margin-bottom:0.4rem;font-family:system-ui,sans-serif;}
 .wtp-text{font-size:14px;line-height:1.65;}
-.wtp-link{color:var(--bg);opacity:0.85;text-decoration:underline;}
-
 .expand-section{margin-bottom:1rem;}
-.expand-toggle{width:100%;padding:0.9rem 1.1rem;background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--r);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:system-ui,sans-serif;font-size:14px;color:var(--text2);transition:all 0.15s;}
-.expand-toggle:hover{border-color:var(--border3);color:var(--text);}
-.expand-toggle-title{font-weight:500;color:var(--text);}
-.expand-toggle-sub{font-size:12px;color:var(--text3);margin-top:2px;text-align:left;}
-.expand-arrow{font-size:12px;flex-shrink:0;margin-left:12px;transition:transform 0.2s;}
+.expand-toggle{width:100%;padding:0.9rem 1.1rem;background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--r);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:system-ui,sans-serif;font-size:14px;transition:all 0.15s;text-align:left;}
+.expand-toggle:hover{border-color:var(--border3);}
+.expand-toggle-inner{flex:1;}
+.expand-toggle-title{font-weight:500;color:var(--text);font-size:14px;}
+.expand-toggle-sub{font-size:12px;color:var(--text3);margin-top:2px;}
+.expand-arrow{font-size:11px;flex-shrink:0;margin-left:12px;color:var(--text3);transition:transform 0.2s;}
 .expand-arrow.open{transform:rotate(180deg);}
 .expand-content{display:none;padding-top:1rem;}
 .expand-content.open{display:block;}
 .expand-intro{background:var(--bg3);border-radius:var(--r);padding:0.75rem 1rem;margin-bottom:1.25rem;}
 .expand-intro-text{font-size:13px;color:var(--text2);line-height:1.6;font-family:system-ui,sans-serif;}
-.expand-sub-section{margin-bottom:1.5rem;}
-.expand-sub-section:last-child{margin-bottom:0;}
-
+.expand-sub{margin-bottom:1.5rem;}
+.expand-sub:last-child{margin-bottom:0;}
 .reset-btn{width:100%;margin-top:1.5rem;padding:0.75rem;font-size:14px;font-family:system-ui,sans-serif;cursor:pointer;border-radius:var(--r);border:0.5px solid var(--border2);background:transparent;color:var(--text3);transition:all 0.15s;}
 .reset-btn:hover{color:var(--text);border-color:var(--border3);}
 footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border);}
@@ -144,23 +137,23 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
 
 <div class="progress-bar">
   <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-  <div class="progress-label" id="progress-label">0 of 11 steps</div>
+  <div class="progress-label" id="progress-label">0 of 11 steps completed</div>
 </div>
 
 <div class="intake">
 
   <div class="step-wrap">
-    <div class="step-label">Step 1 <span class="badge b-req" style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);">required</span></div>
+    <div class="step-label">Step 1 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);font-family:system-ui">required</span></div>
     <div class="step-title">What do you need help with?</div>
     <div class="step-hint">Say it however it comes out. Plain language is perfect. The messier the better.</div>
-    <textarea id="s-need" placeholder="e.g. I want to start a side business but every time I try to plan it I get overwhelmed and quit..." rows="4" oninput="updateProgress();clearFieldError(this)"></textarea>
+    <textarea id="s-need" placeholder="e.g. I want to start a side business but every time I try to plan it I get overwhelmed and quit..." rows="4" oninput="updateProgress();this.classList.remove('has-error')"></textarea>
   </div>
 
   <div class="step-wrap">
-    <div class="step-label">Step 2 <span class="badge b-req" style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);">required</span></div>
+    <div class="step-label">Step 2 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);font-family:system-ui">required</span></div>
     <div class="step-title">Which of these fits your situation?</div>
     <div class="step-hint">Pick everything that applies.</div>
-    <div class="chips-wrap" id="type-chips-wrap">
+    <div class="chips-wrap" id="type-wrap">
       <div class="chips" id="type-chips">
         <button class="chip" onclick="toggleChip(this);updateProgress()">I have a problem to solve</button>
         <button class="chip" onclick="toggleChip(this);updateProgress()">I want to create something</button>
@@ -177,35 +170,35 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
   </div>
 
   <div class="step-wrap">
-    <div class="step-label">Step 3 <span class="badge b-req" style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);">required</span></div>
+    <div class="step-label">Step 3 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);font-family:system-ui">required</span></div>
     <div class="step-title">What does a good result look like?</div>
     <div class="step-hint">If this works, what is different? Be as specific as you can.</div>
-    <textarea id="s-outcome" placeholder="e.g. I have one clear action I can take this week and I stop feeling paralyzed..." rows="3" oninput="updateProgress();clearFieldError(this)"></textarea>
+    <textarea id="s-outcome" placeholder="e.g. I have one clear action I can take this week and I stop feeling paralyzed..." rows="3" oninput="updateProgress();this.classList.remove('has-error')"></textarea>
   </div>
 
   <div class="step-wrap">
-    <div class="step-label">Step 4 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--bg2);color:var(--text3);font-family:system-ui,sans-serif;">optional but important</span></div>
+    <div class="step-label">Step 4 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--bg2);color:var(--text3);font-family:system-ui">optional but important</span></div>
     <div class="step-title">Tell me about yourself and your situation.</div>
     <div class="step-hint">Background, experience, constraints, time, budget -- anything relevant. The more you share, the more personalized everything gets.</div>
     <textarea id="s-context" placeholder="e.g. I'm a full-time nurse with two kids, evenings free, decent with technology but not an expert..." rows="3" oninput="updateProgress()"></textarea>
   </div>
 
   <div class="step-wrap">
-    <div class="step-label">Step 5 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--bg2);color:var(--text3);font-family:system-ui,sans-serif;">optional</span></div>
+    <div class="step-label">Step 5 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--bg2);color:var(--text3);font-family:system-ui">optional</span></div>
     <div class="step-title">What have you already tried or considered?</div>
     <div class="step-hint">So the AI does not suggest things you have already ruled out.</div>
     <textarea id="s-tried" placeholder="e.g. I tried YouTube tutorials but they were too advanced..." rows="3" oninput="updateProgress()"></textarea>
   </div>
 
   <div class="step-wrap">
-    <div class="step-label">Step 6 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--gold-bg);color:var(--gold);font-family:system-ui,sans-serif;">powerful -- optional</span></div>
+    <div class="step-label">Step 6 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--gold-bg);color:var(--gold);font-family:system-ui">powerful -- optional</span></div>
     <div class="step-title">What are you worried the answer might require?</div>
-    <div class="step-hint">Most people skip this. It is the most valuable question on the page -- it tells the AI to be honest instead of comfortable.</div>
+    <div class="step-hint">Most people skip this. It tells the AI to be honest with you instead of comfortable.</div>
     <textarea id="s-fear" placeholder="e.g. That it will take more time than I have. That I need skills I don't have yet..." rows="2" oninput="updateProgress()"></textarea>
   </div>
 
   <div class="step-wrap">
-    <div class="step-label">Step 7 <span class="badge b-req" style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);">required</span></div>
+    <div class="step-label">Step 7 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);font-family:system-ui">required</span></div>
     <div class="step-title">Will this be just for you, or will others use it?</div>
     <div class="step-hint">If you are building something others will access, there may be technical setup needed first. Fluent will flag that before you invest time building.</div>
     <div class="chips-wrap" id="audience-wrap">
@@ -219,7 +212,7 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
   </div>
 
   <div class="step-wrap">
-    <div class="step-label">Step 8 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--bg2);color:var(--text3);font-family:system-ui,sans-serif;">optional</span></div>
+    <div class="step-label">Step 8 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--bg2);color:var(--text3);font-family:system-ui">optional</span></div>
     <div class="step-title">Which AI tools do you already have?</div>
     <div class="step-hint">Fluent will only recommend tools you can actually use right now.</div>
     <div class="chips" id="ai-chips">
@@ -233,11 +226,11 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
   </div>
 
   <div class="step-wrap">
-    <div class="step-label">Step 9 <span class="badge b-req" style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);">required</span></div>
+    <div class="step-label">Step 9 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);font-family:system-ui">required</span></div>
     <div class="step-title">How do you want the AI to respond?</div>
     <div class="step-hint">This one choice dramatically changes what you get back.</div>
     <div class="chips-wrap" id="fmt-wrap">
-      <div class="chips" id="fmt-chips">
+      <div class="chips">
         <button class="chip" onclick="selectOne(this,'fmt');updateProgress()">Give me a ready-to-use draft or answer</button>
         <button class="chip" onclick="selectOne(this,'fmt');updateProgress()">Give me three options to choose from</button>
         <button class="chip" onclick="selectOne(this,'fmt');updateProgress()">Walk me through it step by step</button>
@@ -249,7 +242,7 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
   </div>
 
   <div class="step-wrap">
-    <div class="step-label">Step 10 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--bg2);color:var(--text3);font-family:system-ui,sans-serif;">optional</span></div>
+    <div class="step-label">Step 10 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--bg2);color:var(--text3);font-family:system-ui">optional</span></div>
     <div class="step-title">Is this a one-time question or ongoing work?</div>
     <div class="step-hint">This affects whether Fluent recommends a quick conversation or a more permanent setup.</div>
     <div class="chips">
@@ -260,9 +253,9 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
   </div>
 
   <div class="step-wrap">
-    <div class="step-label">Step 11 <span class="badge b-req" style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);">required</span></div>
+    <div class="step-label">Step 11 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);font-family:system-ui">required</span></div>
     <div class="step-title">How much have you used AI before?</div>
-    <div class="step-hint">Fluent adjusts the language and depth of everything based on your experience. Be honest -- there is no wrong answer and it only makes your results better.</div>
+    <div class="step-hint">Fluent adjusts everything based on your experience. Be honest -- there is no wrong answer and it only makes your results better.</div>
     <div class="chips-wrap" id="exp-wrap">
       <div class="chips">
         <button class="chip" onclick="selectOne(this,'exp');updateProgress()">Never or barely</button>
@@ -278,7 +271,7 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
   <div class="step-wrap">
     <div class="toggle-wrap on" id="tog" onclick="togGold()">
       <div class="toggle-content">
-        <div class="toggle-title">Strategic review -- make sure we're solving the right problem</div>
+        <div class="toggle-title">Strategic review -- make sure we are solving the right problem</div>
         <div class="toggle-sub">Tells the AI to step back before answering and check whether your stated request matches your actual goal. The most valuable setting most people never know exists.</div>
         <div class="toggle-off-note" id="toggle-off-note">Turning this off means the AI will answer your question as stated without checking if it is the right question. Only turn off if you are confident in your framing.</div>
       </div>
@@ -287,7 +280,7 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
   </div>
 
   <div class="err-block" id="err-block">
-    <div class="err-block-text">Please complete the required fields before continuing:</div>
+    <div class="err-block-text">Please complete these required fields before continuing:</div>
     <ul class="err-block-list" id="err-block-list"></ul>
   </div>
 
@@ -300,92 +293,91 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
 
   <div class="output" id="output">
 
-    <div class="out-confirm" id="out-confirm">
+    <div class="out-confirm">
       <div class="out-confirm-text">Playbook built for: <span class="out-confirm-goal" id="out-confirm-goal"></span></div>
     </div>
 
-    <div class="out-core">
+    <div class="out-section">
       <div class="out-section-label">Your optimized prompt</div>
-      <div class="out-section-desc">Copy this and paste it into Claude at <a href="https://claude.ai" target="_blank" style="color:var(--info);">claude.ai</a> -- or any AI you use. This is your goal translated into language AI responds to best.</div>
+      <div class="out-section-desc">Copy this and paste it into your AI of choice in a new conversation. This is your goal translated into language AI responds to best.</div>
       <div class="out-card">
         <div class="out-text" id="out-prompt"></div>
         <button class="copy-btn" id="copy-prompt" onclick="copyText('out-prompt','copy-prompt')">Copy prompt</button>
       </div>
     </div>
 
-    <div class="where-to-paste" id="where-to-paste">
-      <div class="wtp-label">Where to use this</div>
-      <div class="wtp-text" id="wtp-text">Open <a class="wtp-link" href="https://claude.ai" target="_blank">claude.ai</a> in a new tab, start a new conversation, paste your prompt, and hit send. That is it.</div>
+    <div class="where-to-paste">
+      <div class="wtp-label">Next step</div>
+      <div class="wtp-text" id="wtp-text">Open your AI tool, start a new conversation, paste your prompt, and send it.</div>
     </div>
 
-    <div class="out-core" id="sec-gaps">
+    <div class="out-section" id="sec-gaps">
       <div class="out-section-label">What Fluent flagged</div>
-      <div class="out-section-desc">Gaps in your request, a better question if one exists, and your next step.</div>
+      <div class="out-section-desc">Gaps, a better question if one exists, and your most important next action.</div>
       <div class="out-card danger">
         <div class="out-text" id="out-gaps"></div>
       </div>
     </div>
 
-    <div class="expand-section">
-      <button class="expand-toggle" onclick="toggleExpand(this)">
-        <div>
+    <div class="expand-section" id="expand-section" style="display:none;">
+      <button class="expand-toggle" onclick="toggleExpand()">
+        <div class="expand-toggle-inner">
           <div class="expand-toggle-title">Your complete AI setup</div>
-          <div class="expand-toggle-sub">Setup advice, permanent upgrades for Claude, and guides for ongoing work</div>
+          <div class="expand-toggle-sub" id="expand-toggle-sub">Additional setup, permanent upgrades, and guides</div>
         </div>
         <div class="expand-arrow" id="expand-arrow">▼</div>
       </button>
       <div class="expand-content" id="expand-content">
-
         <div class="expand-intro">
-          <div class="expand-intro-text">Everything below is optional but valuable. Each section is a separate upgrade -- you do not need to use all of them. If any section feels confusing, skip it for now and come back when you are ready. The prompt above is enough to get started.</div>
+          <div class="expand-intro-text">Everything below is optional. Each section is a separate upgrade -- you do not need all of them. If anything feels confusing, skip it for now. The prompt above is enough to get started.</div>
         </div>
 
-        <div class="expand-sub-section" id="sec-setup" style="display:none;">
+        <div class="expand-sub" id="sec-useful" style="display:none;">
+          <div class="out-section-label">Useful to know</div>
+          <div class="out-section-desc">Things that will help you get better results from AI -- without needing to be a tech expert.</div>
+          <div class="out-card">
+            <div class="out-text" id="out-useful"></div>
+          </div>
+        </div>
+
+        <div class="expand-sub" id="sec-setup" style="display:none;">
           <div class="out-section-label">Recommended setup</div>
-          <div class="out-section-desc">The best way to use your prompt -- whether to start a fresh conversation, use a specific mode, or set something up first.</div>
+          <div class="out-section-desc">The best way to use your prompt for this specific goal.</div>
           <div class="out-card gold">
             <div class="out-text" id="out-setup"></div>
           </div>
         </div>
 
-        <div class="expand-sub-section" id="sec-context-window" style="display:none;">
-          <div class="out-section-label">Managing your AI conversation</div>
-          <div class="out-section-desc">How to keep getting good results as the conversation grows -- and the signal that tells you it is time to start fresh.</div>
-          <div class="out-card">
-            <div class="out-text" id="out-context-window"></div>
-          </div>
-        </div>
-
-        <div class="expand-sub-section" id="sec-chain" style="display:none;">
-          <div class="out-section-label">Prompt chaining guide</div>
-          <div class="out-section-desc">Your goal is complex enough that one prompt will give a shallow answer. Use these prompts in order -- paste the first, get a response, then paste the next. Each one builds on the last.</div>
+        <div class="expand-sub" id="sec-chain" style="display:none;">
+          <div class="out-section-label">Prompt sequence</div>
+          <div class="out-section-desc">Your goal has multiple stages. Use these prompts in order -- paste the first one, get a response, then paste the next. Each builds on the last.</div>
           <div class="out-card teal">
             <div class="out-text" id="out-chain"></div>
-            <button class="copy-btn" id="copy-chain" onclick="copyText('out-chain','copy-chain')">Copy chaining guide</button>
+            <button class="copy-btn" id="copy-chain" onclick="copyText('out-chain','copy-chain')">Copy prompt sequence</button>
           </div>
         </div>
 
-        <div class="expand-sub-section" id="sec-installer" style="display:none;">
-          <div class="out-section-label">Claude behavior installer</div>
-          <div class="out-section-desc">Add these to Claude's memory settings once and they permanently change how Claude works for you in every future conversation. Think of it like installing a smarter version of Claude -- one that pushes back when you need it, suggests better tools, and watches out for you. You only do this once.</div>
+        <div class="expand-sub" id="sec-installer" style="display:none;">
+          <div class="out-section-label">AI behavior installer</div>
+          <div class="out-section-desc">Add these to your AI's memory settings once. They permanently change how your AI works for you -- making it more honest, more useful, and better at catching things you might miss. You only do this once and it applies to every future conversation.</div>
           <div class="out-card purple">
             <div class="out-text" id="out-installer"></div>
             <button class="copy-btn" id="copy-installer" onclick="copyText('out-installer','copy-installer')">Copy behavior installer</button>
           </div>
         </div>
 
-        <div class="expand-sub-section" id="sec-memory" style="display:none;">
+        <div class="expand-sub" id="sec-memory" style="display:none;">
           <div class="out-section-label">Your personal context</div>
-          <div class="out-section-desc">Add these to Claude's memory once. Every future conversation will start already knowing who you are and how you work -- you will never have to re-explain yourself again. To add: go to claude.ai, click your name at the bottom left, go to Settings, then Memory.</div>
+          <div class="out-section-desc">Add these to your AI's memory once. Every future conversation will start already knowing who you are -- you will never have to re-explain yourself again.</div>
           <div class="out-card info">
             <div class="out-text" id="out-memory"></div>
             <button class="copy-btn" id="copy-memory" onclick="copyText('out-memory','copy-memory')">Copy personal context</button>
           </div>
         </div>
 
-        <div class="expand-sub-section" id="sec-project" style="display:none;">
-          <div class="out-section-label">Claude Project instructions</div>
-          <div class="out-section-desc">For work you will keep coming back to. A Project is like a permanent file folder Claude opens before every conversation -- everything in it gets remembered automatically. Paste this text when creating a new Project in Claude.</div>
+        <div class="expand-sub" id="sec-project" style="display:none;">
+          <div class="out-section-label">Project instructions</div>
+          <div class="out-section-desc">For ongoing work. A Project is a permanent workspace where your AI remembers your background and goals automatically every time you open it -- no re-explaining required.</div>
           <div class="out-card success">
             <div class="out-text" id="out-project"></div>
             <button class="copy-btn" id="copy-project" onclick="copyText('out-project','copy-project')">Copy project instructions</button>
@@ -407,37 +399,36 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
 
 <script>
 var goldOn=true,selectedFmt='',selectedScope='',selectedExp='',selectedAudience='';
-var loadingMsgs=['Reading your situation...','Applying expert AI knowledge...','Building your prompt...','Crafting your setup...','Almost ready...'];
+var loadingMsgs=['Reading your situation...','Building your prompt...','Scaling to your needs...','Almost ready...'];
 var loadingInterval;
-var totalSteps=11;
 
 function updateProgress(){
   var filled=0;
-  if(g('s-need')) filled++;
-  if(getSelected('type-chips').length>0) filled++;
-  if(g('s-outcome')) filled++;
-  if(g('s-context')) filled++;
-  if(g('s-tried')) filled++;
-  if(g('s-fear')) filled++;
-  if(selectedAudience) filled++;
-  if(getSelected('ai-chips').length>0) filled++;
-  if(selectedFmt) filled++;
-  if(selectedScope) filled++;
-  if(selectedExp) filled++;
-  var pct=Math.round((filled/totalSteps)*100);
+  if(g('s-need'))filled++;
+  if(getSelected('type-chips').length>0)filled++;
+  if(g('s-outcome'))filled++;
+  if(g('s-context'))filled++;
+  if(g('s-tried'))filled++;
+  if(g('s-fear'))filled++;
+  if(selectedAudience)filled++;
+  if(getSelected('ai-chips').length>0)filled++;
+  if(selectedFmt)filled++;
+  if(selectedScope)filled++;
+  if(selectedExp)filled++;
+  var pct=Math.round((filled/11)*100);
   document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-label').textContent=filled+' of '+totalSteps+' steps completed';
+  document.getElementById('progress-label').textContent=filled+' of 11 steps completed';
 }
 
-function clearFieldError(el){el.classList.remove('has-error');}
 function toggleChip(el){el.classList.toggle('on');}
 function selectOne(el,group){
   el.closest('.chips').querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});
   el.classList.add('on');
   if(group==='fmt'){selectedFmt=el.textContent;var w=document.getElementById('fmt-wrap');if(w)w.classList.remove('has-error');}
-  if(group==='scope') selectedScope=el.textContent;
+  if(group==='scope')selectedScope=el.textContent;
   if(group==='exp'){selectedExp=el.textContent;var w=document.getElementById('exp-wrap');if(w)w.classList.remove('has-error');}
   if(group==='audience'){selectedAudience=el.textContent;var w=document.getElementById('audience-wrap');if(w)w.classList.remove('has-error');}
+  updateProgress();
 }
 function togGold(){
   goldOn=!goldOn;
@@ -446,14 +437,14 @@ function togGold(){
   document.getElementById('tkn').classList.toggle('on',goldOn);
   document.getElementById('toggle-off-note').style.display=goldOn?'none':'block';
 }
-function toggleExpand(btn){
-  var content=document.getElementById('expand-content');
-  var arrow=document.getElementById('expand-arrow');
-  var isOpen=content.classList.contains('open');
-  content.classList.toggle('open',!isOpen);
-  arrow.classList.toggle('open',!isOpen);
+function toggleExpand(){
+  var c=document.getElementById('expand-content');
+  var a=document.getElementById('expand-arrow');
+  var open=c.classList.contains('open');
+  c.classList.toggle('open',!open);
+  a.classList.toggle('open',!open);
 }
-function getSelected(id){var el=document.getElementById(id);if(!el)return[];return Array.from(el.querySelectorAll('.chip.on')).map(function(c){return c.textContent;});}
+function getSelected(id){var el=document.getElementById(id);if(!el)return[];return Array.from(el.querySelectorAll('.chip.on')).map(function(c){return c.textContent.trim();});}
 function g(id){var e=document.getElementById(id);return e?e.value.trim():'';}
 function se(id,show){var e=document.getElementById(id);if(e)e.style.display=show?'block':'none';}
 function startLoading(){
@@ -464,87 +455,87 @@ function startLoading(){
 function stopLoading(){clearInterval(loadingInterval);}
 
 function validate(){
-  var valid=true;
-  var errors=[];
+  var valid=true,errors=[];
   var need=g('s-need'),outcome=g('s-outcome'),types=getSelected('type-chips');
-
-  if(!need){document.getElementById('s-need').classList.add('has-error');errors.push('Step 1: Tell us what you need help with');valid=false;}
-  if(types.length===0){document.getElementById('type-chips-wrap').classList.add('has-error');errors.push('Step 2: Select at least one option that fits your situation');valid=false;}
-  if(!outcome){document.getElementById('s-outcome').classList.add('has-error');errors.push('Step 3: Describe what a good result looks like');valid=false;}
-  if(!selectedAudience){document.getElementById('audience-wrap').classList.add('has-error');errors.push('Step 7: Tell us who will use this');valid=false;}
-  if(!selectedFmt){document.getElementById('fmt-wrap').classList.add('has-error');errors.push('Step 9: Choose how you want the AI to respond');valid=false;}
-  if(!selectedExp){document.getElementById('exp-wrap').classList.add('has-error');errors.push('Step 11: Tell us how much you have used AI before');valid=false;}
-
-  var errBlock=document.getElementById('err-block');
-  var errList=document.getElementById('err-block-list');
+  if(!need){document.getElementById('s-need').classList.add('has-error');errors.push('Step 1: Tell us what you need help with');}
+  if(types.length===0){document.getElementById('type-wrap').classList.add('has-error');errors.push('Step 2: Select at least one option');}
+  if(!outcome){document.getElementById('s-outcome').classList.add('has-error');errors.push('Step 3: Describe what a good result looks like');}
+  if(!selectedAudience){document.getElementById('audience-wrap').classList.add('has-error');errors.push('Step 7: Tell us who will use this');}
+  if(!selectedFmt){document.getElementById('fmt-wrap').classList.add('has-error');errors.push('Step 9: Choose how you want the AI to respond');}
+  if(!selectedExp){document.getElementById('exp-wrap').classList.add('has-error');errors.push('Step 11: Tell us how much you have used AI before');}
+  valid=errors.length===0;
+  var eb=document.getElementById('err-block');
   if(!valid){
-    errList.innerHTML=errors.map(function(e){return '<li>'+e+'</li>';}).join('');
-    errBlock.style.display='block';
-    errBlock.scrollIntoView({behavior:'smooth',block:'center'});
+    document.getElementById('err-block-list').innerHTML=errors.map(function(e){return'<li>'+e+'</li>';}).join('');
+    eb.style.display='block';
+    eb.scrollIntoView({behavior:'smooth',block:'center'});
   } else {
-    errBlock.style.display='none';
+    eb.style.display='none';
   }
   return valid;
 }
 
 async function generate(){
-  if(!validate()) return;
+  if(!validate())return;
   var need=g('s-need'),outcome=g('s-outcome'),context=g('s-context'),tried=g('s-tried'),fear=g('s-fear');
   var types=getSelected('type-chips'),aiTools=getSelected('ai-chips');
   var isNovice=selectedExp==='Never or barely'||selectedExp==='A little -- I know the basics';
   var isPublic=selectedAudience==='Building something public'||selectedAudience==='Sharing with a few people';
   var isOngoing=selectedScope==='Ongoing -- I\'ll keep coming back to this';
-  var isComplex=types.length>=3||need.length>300||isOngoing;
+  var isComplex=types.length>=3||need.length>250||isOngoing||types.indexOf('Building a business or product')>-1;
 
   document.getElementById('gen-btn').disabled=true;
   se('loading',true);se('output',false);
   startLoading();
 
-  var expLevel=selectedExp;
-  var systemPrompt=`You are Fluent -- an expert AI consultant and prompt engineer. You have comprehensive knowledge of how Claude works and what produces transformative AI output versus mediocre output.
+  var systemPrompt=`You are Fluent -- an AI prompt expert and interpreter. Your job is to take plain human input and generate a scaled, right-sized AI playbook. The most important rule: match the output to the complexity of the goal. Simple goals need a great prompt and a clear next step -- nothing more. Complex ongoing goals need the full suite.
 
-CRITICAL PRE-GENERATION ASSESSMENT:
-1. Does the stated request match the actual goal? If there is a gap, note it briefly at the start of the prompt field.
-2. Is this complex enough to need prompt chaining? isComplex=${isComplex}
-3. Does this involve public infrastructure? isPublic=${isPublic}. If yes, flag all technical needs in gaps.
-4. What has the user NOT mentioned that an expert would know matters here?
+COMPLEXITY LEVEL: ${isComplex?'HIGH -- generate full suite':'LOW -- generate prompt, gaps, and useful-to-know only. Do not generate chaining, installer, memory, or project sections.'}
+EXPERIENCE: ${selectedExp}. ${isNovice?'Plain English only. No jargon. Simple analogies.':'Normal language.'}
+PUBLIC BUILD: ${isPublic?'YES -- flag infrastructure needs in gaps.':'No.'}
+ONGOING: ${isOngoing?'YES -- generate project instructions.':'No.'}
 
-EXPERT KNOWLEDGE TO APPLY ACTIVELY:
-- Role specificity transforms output. "You are a financial advisor" is generic. "You are a CFO with restructuring experience who understands both numbers and human cost" is expert.
-- Claude responds differently to different framing. "Help me" produces assistant behavior. "Challenge this" or "stress-test this" produces critical thinking.
-- The most valuable prompt instruction is the meta-instruction: what should Claude watch for that the user did not think to mention.
-- Specificity in constraints produces better output than open-ended requests.
-- Questions produce lectures. Output requests produce answers.
+PROMPT ENGINEERING RULES TO APPLY:
+- Assign a specific expert role, not a generic label
+- Transform their input -- do not just rephrase it
+- Include meta-instruction: check whether stated request matches actual goal
+- Include boldness instruction: be direct, push back, do not just agree
+- Include gap-flagging: ask for missing critical info before proceeding
+- Match framing to goal: use "challenge this" or "evaluate" for analytical tasks, "help me" for supportive tasks
 
-EXPERIENCE LEVEL: ${expLevel}. ${isNovice?'CRITICAL: Write ALL sections in plain English. No jargon. No technical terms. Use simple everyday analogies. Format setup and next steps as short numbered lists. Imagine explaining to a smart friend who has never used AI.':'Write clearly but normal language is fine.'}
+CONVERSATION REALITY -- state this accurately if included:
+- AI conversations do not save history between sessions. Only memory entries and Project instructions persist.
+- If a conversation gets very long, AI starts losing track of earlier details -- like a notepad running out of space.
+- The solution when that happens: copy a brief summary of key decisions, start a new conversation, paste the summary to catch the AI up quickly.
+- Memory entries mean the AI always knows your background -- but not what was said in previous conversations.
 
-Return pure JSON only -- no markdown, no extra text before or after:
+Return pure JSON only. No markdown. No text outside the JSON:
 {
-  "prompt": "Fully transformed Claude prompt with: specific expert role, full context including implied details, concrete goal and success criteria, all constraints, output format instruction, gap-flagging instruction, meta-instruction, boldness instruction, knowledge contribution instruction",
-  "goalSummary": "5-10 word plain summary of what this person is trying to do -- used to confirm the playbook was built for their specific goal",
-  "wtpInstruction": "One plain sentence telling them exactly where to paste this prompt and what to do next. ${isNovice?'Write as if they have never opened a website before.':'Keep it brief.'}",
+  "goalSummary": "5-8 word plain summary of their actual goal",
+  "prompt": "Fully transformed prompt with expert role, context, goal, constraints, output format, gap-flagging, meta-check, boldness instruction",
+  "wtpInstruction": "One plain sentence: open your AI of choice, start a new conversation, paste this prompt and send it.",
+  "gaps": "GAPS: [missing info in plain language]\n\nBETTER QUESTION: [smarter framing if one exists, or skip this section]\n\nNEXT STEP: [numbered list of what to do right now]",
+  "usefulToKnow": "${isNovice||selectedExp==='Regularly but not getting the most out of it'?'3-4 short plain-language tips that would help this specific user get better results from AI. Cover: why specific questions beat vague ones, what to do when AI gives a wrong or unhelpful answer, and one tip specific to their goal type. No jargon.':''}",
+  "setup": "${isComplex?'Setup guidance for this specific goal. General language -- not specific to any one AI tool.':''}",
   "needsChaining": ${isComplex},
-  "chainingGuide": "If needsChaining: numbered sequence of 3-4 focused prompts to use in order. Label what each accomplishes. Write as ready-to-paste prompts. If not: empty string.",
-  "setup": "Setup guidance. ${isNovice?'Numbered list. Simple analogies. Short sentences.':'Clear guidance on where and how to use this.'} Always name the specific next action.",
-  "contextWindowGuide": "Plain language guide on managing the conversation. Explain degradation as: after a long conversation AI starts forgetting earlier details like a notepad running out of space. Give the signal to start fresh and what to do when that happens.",
+  "chainingGuide": "${isComplex?'If goal has multiple phases: numbered sequence of 3-4 focused prompts. Label what each accomplishes. Ready to paste. Otherwise empty string.':''}",
   "needsProject": ${isOngoing},
-  "projectInstructions": "If needsProject: exact text to paste into a Claude Project for this situation. If not: one sentence on what would trigger needing one.",
-  "behaviorInstaller": "Memory entries to permanently upgrade Claude. Write as paste-ready entries. Include: Fluent access awareness, boldness instruction, tool awareness, conversation monitoring, goal alignment, memory prompting, knowledge contribution. Write each specifically for this person based on what they shared.",
-  "personalContext": "Memory entries from what this person shared. Label PERSONAL CONTEXT. Cover background, constraints, goals, communication style, AI experience. Note: replace conflicting entries, do not stack duplicates.",
-  "gaps": "THREE labeled sections. GAPS: missing information that would change the output, ${isNovice?'in plain everyday language':'clearly stated'}. BETTER QUESTION: the smarter question if one exists. NEXT STEP: numbered list of exactly what to do right now${isNovice?' -- written for someone who has just started using AI for the first time':''}."
+  "projectInstructions": "${isOngoing?'Exact text to paste into a Project for this situation. Covers: who the user is, what the project is, what is already decided, how AI should behave.':''}",
+  "behaviorInstaller": "${isComplex?'Memory entries to permanently upgrade AI behavior for this user. Include: Fluent awareness, boldness, tool awareness, conversation monitoring, goal alignment, memory prompting. Written specifically for this person.':''}",
+  "personalContext": "${isComplex?'Memory entries from what this person shared. Label PERSONAL CONTEXT. Cover background, constraints, goals, communication style, AI experience. Note: replace conflicting entries.':''}"
 }`;
 
-  var userMsg=`What they need: ${need}
+  var userMsg=`Goal: ${need}
 Type: ${types.join(', ')}
-Success looks like: ${outcome}
+Success: ${outcome}
 ${context?'About them: '+context:''}
-${tried?'Already tried: '+tried:''}
+${tried?'Tried: '+tried:''}
 ${fear?'Worried about: '+fear:''}
-${selectedAudience?'Audience: '+selectedAudience:''}
+Audience: ${selectedAudience}
 ${aiTools.length?'AI tools: '+aiTools.join(', '):''}
-Format wanted: ${selectedFmt}
+Format: ${selectedFmt}
 ${selectedScope?'Scope: '+selectedScope:''}
-Experience: ${expLevel}
+Experience: ${selectedExp}
 Strategic review: ${goldOn?'ON':'OFF'}`;
 
   try{
@@ -557,31 +548,31 @@ Strategic review: ${goldOn?'ON':'OFF'}`;
     var data=JSON.parse(text);
     var raw=data.content&&data.content[0]&&data.content[0].text?data.content[0].text:'';
     var clean=raw.replace(/```json|```/g,'').trim();
-    var jsonStart=clean.indexOf('{');
-    var jsonEnd=clean.lastIndexOf('}');
-    if(jsonStart!==-1&&jsonEnd!==-1) clean=clean.substring(jsonStart,jsonEnd+1);
+    var js=clean.indexOf('{'),je=clean.lastIndexOf('}');
+    if(js!==-1&&je!==-1)clean=clean.substring(js,je+1);
     var result=JSON.parse(clean);
 
     stopLoading();se('loading',false);
     document.getElementById('gen-btn').disabled=false;
 
-    document.getElementById('out-confirm-goal').textContent=result.goalSummary||need.substring(0,60);
+    document.getElementById('out-confirm-goal').textContent=result.goalSummary||need.substring(0,50);
     document.getElementById('out-prompt').textContent=result.prompt||'';
-    document.getElementById('wtp-text').innerHTML=(result.wtpInstruction||'Open <a href="https://claude.ai" target="_blank" style="color:var(--bg);opacity:0.85;text-decoration:underline;">claude.ai</a>, start a new conversation, paste your prompt, and hit send.')+' <a href="https://claude.ai" target="_blank" style="color:var(--bg);opacity:0.85;text-decoration:underline;">Open Claude now →</a>';
+    document.getElementById('wtp-text').textContent=result.wtpInstruction||'Open your AI tool, start a new conversation, paste your prompt, and send it.';
 
-    var gapsText='';
-    if(result.gaps){
-      if(typeof result.gaps==='string') gapsText=result.gaps;
-      else if(typeof result.gaps==='object') gapsText=Object.entries(result.gaps).map(function(e){return e[0].toUpperCase()+':\n'+e[1];}).join('\n\n');
-    }
-    document.getElementById('out-gaps').textContent=gapsText.trim();
+    var gaps=result.gaps;
+    if(typeof gaps==='object')gaps=Object.entries(gaps).map(function(e){return e[0].toUpperCase()+':\n'+e[1];}).join('\n\n');
+    document.getElementById('out-gaps').textContent=(gaps||'').trim();
 
-    if(result.setup){document.getElementById('out-setup').textContent=result.setup;se('sec-setup',true);}else{se('sec-setup',false);}
-    if(result.contextWindowGuide){document.getElementById('out-context-window').textContent=result.contextWindowGuide;se('sec-context-window',true);}else{se('sec-context-window',false);}
-    if(result.needsChaining&&result.chainingGuide&&result.chainingGuide.trim()){document.getElementById('out-chain').textContent=result.chainingGuide;se('sec-chain',true);}else{se('sec-chain',false);}
-    if(result.behaviorInstaller&&result.behaviorInstaller.trim()){document.getElementById('out-installer').textContent=result.behaviorInstaller;se('sec-installer',true);}else{se('sec-installer',false);}
-    if(result.personalContext&&result.personalContext.trim()){document.getElementById('out-memory').textContent=result.personalContext;se('sec-memory',true);}else{se('sec-memory',false);}
-    if(result.needsProject&&result.projectInstructions&&result.projectInstructions.trim()){document.getElementById('out-project').textContent=result.projectInstructions;se('sec-project',true);}else{se('sec-project',false);}
+    var hasExpand=false;
+
+    if(result.usefulToKnow&&result.usefulToKnow.trim()){document.getElementById('out-useful').textContent=result.usefulToKnow;se('sec-useful',true);hasExpand=true;}else{se('sec-useful',false);}
+    if(result.setup&&result.setup.trim()){document.getElementById('out-setup').textContent=result.setup;se('sec-setup',true);hasExpand=true;}else{se('sec-setup',false);}
+    if(result.needsChaining&&result.chainingGuide&&result.chainingGuide.trim()){document.getElementById('out-chain').textContent=result.chainingGuide;se('sec-chain',true);hasExpand=true;}else{se('sec-chain',false);}
+    if(result.behaviorInstaller&&result.behaviorInstaller.trim()){document.getElementById('out-installer').textContent=result.behaviorInstaller;se('sec-installer',true);hasExpand=true;}else{se('sec-installer',false);}
+    if(result.personalContext&&result.personalContext.trim()){document.getElementById('out-memory').textContent=result.personalContext;se('sec-memory',true);hasExpand=true;}else{se('sec-memory',false);}
+    if(result.needsProject&&result.projectInstructions&&result.projectInstructions.trim()){document.getElementById('out-project').textContent=result.projectInstructions;se('sec-project',true);hasExpand=true;}else{se('sec-project',false);}
+
+    se('expand-section',hasExpand);
 
     se('output',true);
     document.getElementById('output').scrollIntoView({behavior:'smooth',block:'start'});
@@ -589,10 +580,12 @@ Strategic review: ${goldOn?'ON':'OFF'}`;
   }catch(err){
     stopLoading();se('loading',false);
     document.getElementById('gen-btn').disabled=false;
-    document.getElementById('out-prompt').textContent='Something went wrong. Please try again. If this keeps happening, try shortening your answers slightly and resubmitting.';
-    document.getElementById('out-gaps').textContent='Error details: '+err.message;
-    document.getElementById('out-confirm-goal').textContent=need.substring(0,60);
-    ['sec-setup','sec-context-window','sec-chain','sec-installer','sec-memory','sec-project'].forEach(function(s){se(s,false);});
+    document.getElementById('out-confirm-goal').textContent=need.substring(0,50);
+    document.getElementById('out-prompt').textContent='Something went wrong. Please try again. If this keeps happening, try shortening your answers slightly.';
+    document.getElementById('out-gaps').textContent='Technical detail: '+err.message;
+    document.getElementById('wtp-text').textContent='Open your AI tool, start a new conversation, paste your prompt, and send it.';
+    ['sec-useful','sec-setup','sec-chain','sec-installer','sec-memory','sec-project'].forEach(function(s){se(s,false);});
+    se('expand-section',false);
     se('output',true);
   }
 }
