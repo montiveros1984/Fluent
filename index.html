@@ -570,7 +570,10 @@ Strategic review: ${goldOn?'ON':'OFF'}`;
     document.getElementById('wtp-text').innerHTML=(result.wtpInstruction||'Open <a href="https://claude.ai" target="_blank" style="color:var(--bg);opacity:0.85;text-decoration:underline;">claude.ai</a>, start a new conversation, paste your prompt, and hit send.')+' <a href="https://claude.ai" target="_blank" style="color:var(--bg);opacity:0.85;text-decoration:underline;">Open Claude now →</a>';
 
     var gapsText='';
-    if(result.gaps) gapsText+=result.gaps;
+    if(result.gaps){
+      if(typeof result.gaps==='string') gapsText=result.gaps;
+      else if(typeof result.gaps==='object') gapsText=Object.entries(result.gaps).map(function(e){return e[0].toUpperCase()+':\n'+e[1];}).join('\n\n');
+    }
     document.getElementById('out-gaps').textContent=gapsText.trim();
 
     if(result.setup){document.getElementById('out-setup').textContent=result.setup;se('sec-setup',true);}else{se('sec-setup',false);}
