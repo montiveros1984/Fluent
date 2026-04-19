@@ -3,61 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fluent — Your AI Interpreter</title>
+<title>Fluent — Stop Guessing. Start Getting Results.</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
 --bg:#fafaf8;--bg2:#f0efe9;--bg3:#e5e4dc;
 --text:#181816;--text2:#5c5c54;--text3:#9a9a8e;
 --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.16);--border3:rgba(0,0,0,0.30);
---accent:#181816;--accent-light:#f0efe9;
 --gold:#b8860b;--gold-bg:#fdf8e8;--gold-border:#e8d080;
 --info:#0c447c;--info-bg:#e8f1fb;
 --danger:#8b1a1a;--danger-bg:#fdf0f0;
 --success:#2d5a1b;--success-bg:#edf7e6;
+--purple:#4a2d8a;--purple-bg:#f0ebff;--purple-border:#c4b0f0;
+--teal:#0f6e56;--teal-bg:#e1f5ee;--teal-border:#9fe1cb;
 --r:10px;--rl:16px;
-font-size:16px;
 }
 @media(prefers-color-scheme:dark){:root{
 --bg:#141412;--bg2:#1e1e1b;--bg3:#282824;
 --text:#f2f0e8;--text2:#a0a094;--text3:#626258;
 --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.14);--border3:rgba(255,255,255,0.26);
---accent:#f2f0e8;--accent-light:#1e1e1b;
 --gold:#d4a017;--gold-bg:#2a2410;--gold-border:#6b5010;
 --info:#7ab3e0;--info-bg:#0d1f35;
 --danger:#e08080;--danger-bg:#2a0f0f;
 --success:#80c060;--success-bg:#0f200a;
+--purple:#b09ae0;--purple-bg:#1a1228;--purple-border:#6b5090;
+--teal:#5dcaa5;--teal-bg:#04342c;--teal-border:#0f6e56;
 }}
 body{font-family:'Georgia',serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;}
-
-/* HEADER */
-.header{max-width:680px;margin:0 auto;padding:3rem 1.5rem 2rem;}
-.wordmark{font-family:'Georgia',serif;font-size:13px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text3);margin-bottom:2rem;}
-.hero-title{font-size:clamp(28px,5vw,42px);font-weight:400;line-height:1.15;margin-bottom:1rem;letter-spacing:-0.02em;}
+.header{max-width:680px;margin:0 auto;padding:3rem 1.5rem 0;}
+.wordmark{font-family:system-ui,sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text3);margin-bottom:2.5rem;}
+.hero-title{font-size:clamp(30px,5vw,46px);font-weight:400;line-height:1.1;margin-bottom:1.25rem;letter-spacing:-0.02em;}
 .hero-title em{font-style:italic;color:var(--text2);}
-.hero-sub{font-size:16px;color:var(--text2);line-height:1.7;max-width:520px;margin-bottom:2rem;}
-.hero-divider{border:none;border-top:0.5px solid var(--border2);margin-bottom:2rem;}
-
-/* INTAKE */
+.hero-body{font-size:16px;color:var(--text2);line-height:1.75;max-width:540px;margin-bottom:1.5rem;}
+.how-it-works{display:flex;flex-direction:column;gap:10px;margin-bottom:2rem;}
+.hiw-step{display:flex;gap:12px;align-items:flex-start;}
+.hiw-num{width:24px;height:24px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:11px;font-family:system-ui,sans-serif;color:var(--text3);flex-shrink:0;margin-top:2px;}
+.hiw-text{font-size:14px;color:var(--text2);line-height:1.6;}
+.hiw-text strong{color:var(--text);font-weight:400;}
+.hero-divider{border:none;border-top:0.5px solid var(--border2);margin:2rem 0;}
 .intake{max-width:680px;margin:0 auto;padding:0 1.5rem 4rem;}
-
 .step-wrap{margin-bottom:2.5rem;}
-.step-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:0.5rem;display:flex;justify-content:space-between;align-items:center;}
+.step-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:0.5rem;display:flex;justify-content:space-between;align-items:center;font-family:system-ui,sans-serif;}
 .step-title{font-size:18px;font-weight:400;color:var(--text);margin-bottom:0.35rem;line-height:1.3;}
 .step-hint{font-size:14px;color:var(--text3);margin-bottom:0.9rem;line-height:1.6;}
-
-/* INPUTS */
 textarea{width:100%;background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--r);padding:0.9rem 1.1rem;font-size:15px;font-family:'Georgia',serif;color:var(--text);line-height:1.65;resize:vertical;outline:none;min-height:90px;transition:border-color 0.15s,background 0.15s;}
 textarea:focus{border-color:var(--border3);background:var(--bg);}
 textarea::placeholder{color:var(--text3);font-style:italic;}
-
-/* CHOICE CHIPS */
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:0.5rem;}
-.chip{padding:0.55rem 1rem;font-size:13px;font-family:'Georgia',serif;color:var(--text2);background:var(--bg);border:0.5px solid var(--border2);border-radius:50px;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+.chip{padding:0.55rem 1rem;font-size:13px;font-family:system-ui,sans-serif;color:var(--text2);background:var(--bg);border:0.5px solid var(--border2);border-radius:50px;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
 .chip:hover{border-color:var(--border3);color:var(--text);}
 .chip.on{background:var(--text);color:var(--bg);border-color:var(--text);}
-
-/* TOGGLE */
 .toggle-wrap{display:flex;align-items:flex-start;gap:12px;padding:1rem 1.1rem;background:var(--gold-bg);border:0.5px solid var(--gold-border);border-radius:var(--r);cursor:pointer;transition:all 0.15s;}
 .toggle-content{flex:1;}
 .toggle-title{font-size:14px;font-weight:400;color:var(--text);margin-bottom:2px;}
@@ -66,147 +61,157 @@ textarea::placeholder{color:var(--text3);font-style:italic;}
 .sw.on{background:var(--gold);}
 .kn{width:18px;height:18px;border-radius:50%;background:white;position:absolute;top:2px;left:2px;transition:left 0.15s;box-shadow:0 1px 3px rgba(0,0,0,0.2);}
 .kn.on{left:20px;}
-
-/* DIVIDER */
 hr{border:none;border-top:0.5px solid var(--border);margin:2rem 0;}
-
-/* GENERATE BUTTON */
 .gen-btn{width:100%;padding:1.1rem;font-size:16px;font-family:'Georgia',serif;font-style:italic;cursor:pointer;border-radius:var(--r);background:var(--text);color:var(--bg);border:none;transition:opacity 0.15s;letter-spacing:0.01em;}
 .gen-btn:hover{opacity:0.85;}
-.gen-btn:active{opacity:0.7;}
 .gen-btn:disabled{opacity:0.4;cursor:not-allowed;}
-
-/* LOADING */
 .loading{display:none;text-align:center;padding:2rem;}
 .loading-text{font-size:14px;color:var(--text3);font-style:italic;margin-top:0.75rem;}
 .spinner{width:28px;height:28px;border:1.5px solid var(--border2);border-top-color:var(--text);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto;}
 @keyframes spin{to{transform:rotate(360deg);}}
-
-/* OUTPUT */
 .output{display:none;margin-top:2rem;}
 .out-section{margin-bottom:1.75rem;}
-.out-section-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:0.6rem;}
+.out-section-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:0.4rem;font-family:system-ui,sans-serif;}
+.out-section-desc{font-size:13px;color:var(--text3);margin-bottom:0.7rem;line-height:1.55;}
 .out-card{background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--r);padding:1.25rem 1.4rem;}
 .out-card.gold{background:var(--gold-bg);border-color:var(--gold-border);}
 .out-card.info{background:var(--info-bg);border-color:rgba(12,68,124,0.2);}
 .out-card.success{background:var(--success-bg);border-color:rgba(45,90,27,0.2);}
+.out-card.danger{background:var(--danger-bg);border-color:rgba(139,26,26,0.2);}
+.out-card.purple{background:var(--purple-bg);border-color:var(--purple-border);}
+.out-card.teal{background:var(--teal-bg);border-color:var(--teal-border);}
 .out-text{font-size:14px;color:var(--text);line-height:1.85;white-space:pre-wrap;word-break:break-word;font-family:'Georgia',serif;}
-.out-title{font-size:15px;font-weight:400;color:var(--text);margin-bottom:0.5rem;}
-.out-body{font-size:14px;color:var(--text2);line-height:1.75;}
-.out-body strong{color:var(--text);font-weight:400;}
-
-.copy-btn{margin-top:0.9rem;padding:0.65rem 1.2rem;font-size:13px;font-family:'Georgia',serif;cursor:pointer;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg);color:var(--text);transition:all 0.15s;}
+.copy-btn{margin-top:0.9rem;padding:0.65rem 1.2rem;font-size:13px;font-family:system-ui,sans-serif;cursor:pointer;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg);color:var(--text);transition:all 0.15s;}
 .copy-btn:hover{background:var(--bg3);}
-
-.reset-btn{width:100%;margin-top:1.5rem;padding:0.75rem;font-size:14px;font-family:'Georgia',serif;cursor:pointer;border-radius:var(--r);border:0.5px solid var(--border2);background:transparent;color:var(--text3);transition:all 0.15s;}
+.reset-btn{width:100%;margin-top:1.5rem;padding:0.75rem;font-size:14px;font-family:system-ui,sans-serif;cursor:pointer;border-radius:var(--r);border:0.5px solid var(--border2);background:transparent;color:var(--text3);transition:all 0.15s;}
 .reset-btn:hover{color:var(--text);border-color:var(--border3);}
-
-/* ERR */
-.err{font-size:12px;color:var(--danger);margin-top:0.4rem;display:none;font-style:italic;}
-
-/* FOOTER */
-footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border);font-size:12px;color:var(--text3);letter-spacing:0.05em;}
-
-/* BADGES */
+.err{font-size:12px;color:var(--danger);margin-top:0.4rem;display:none;font-style:italic;font-family:system-ui,sans-serif;}
 .badge{font-size:10px;border-radius:4px;padding:2px 7px;font-family:system-ui,sans-serif;}
 .b-req{background:var(--info-bg);color:var(--info);}
 .b-opt{background:var(--bg2);color:var(--text3);}
 .b-gold{background:var(--gold-bg);color:var(--gold);}
+footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border);}
+.footer-word{font-size:15px;font-family:system-ui,sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.3rem;}
+.footer-tag{font-size:13px;color:var(--text3);}
 </style>
 </head>
 <body>
 
 <div class="header">
   <div class="wordmark">Fluent</div>
-  <h1 class="hero-title">Tell me what you need.<br><em>I'll tell the AI how to help you.</em></h1>
-  <p class="hero-sub">Answer a few questions in plain language. Fluent translates your goal into a complete AI playbook -- the optimized prompt, the right setup, and everything the AI needs to give you its best.</p>
+  <h1 class="hero-title">Most people use AI and get<br>a fraction of what it can do.<br><em>Fluent closes that gap.</em></h1>
+  <p class="hero-body">You do not need to learn prompt engineering. You just need to answer a few plain-language questions. Fluent translates what you know into what AI needs -- and hands you a complete playbook to get results you did not know were possible.</p>
+  <div class="how-it-works">
+    <div class="hiw-step"><div class="hiw-num">1</div><div class="hiw-text"><strong>You describe your situation</strong> in plain language. No technical knowledge required.</div></div>
+    <div class="hiw-step"><div class="hiw-num">2</div><div class="hiw-text"><strong>Fluent translates it</strong> into an expert-level prompt, the right setup, and permanent upgrades for how your AI works.</div></div>
+    <div class="hiw-step"><div class="hiw-num">3</div><div class="hiw-text"><strong>You paste and go.</strong> Everything Fluent generates is ready to use. No guessing, no wasted effort.</div></div>
+  </div>
   <hr class="hero-divider">
 </div>
 
 <div class="intake">
 
-  <!-- STEP 1: WHAT THEY NEED -->
   <div class="step-wrap">
     <div class="step-label">Step 1 <span class="badge b-req">required</span></div>
     <div class="step-title">What do you need help with?</div>
-    <div class="step-hint">Say it however it comes out. Plain language is fine. The messier the better -- that is what Fluent is for.</div>
-    <textarea id="s-need" placeholder="e.g. I want to start a side business but I don't know where to begin and every time I try to plan it I get overwhelmed and stop..." rows="4"></textarea>
+    <div class="step-hint">Say it however it comes out. Plain language is perfect. The messier the better -- that is exactly what Fluent is designed for.</div>
+    <textarea id="s-need" placeholder="e.g. I want to start a side business but every time I try to plan it I get overwhelmed and quit..." rows="4"></textarea>
     <div class="err" id="err-need">Please describe what you need help with.</div>
   </div>
 
-  <!-- STEP 2: TYPE -->
   <div class="step-wrap">
     <div class="step-label">Step 2 <span class="badge b-req">required</span></div>
-    <div class="step-title">Which of these is closest to your situation?</div>
-    <div class="step-hint">Pick everything that fits.</div>
+    <div class="step-title">Which of these fits your situation?</div>
+    <div class="step-hint">Pick everything that applies.</div>
     <div class="chips" id="type-chips">
-      <button class="chip" onclick="toggleChip(this,'type')">I have a problem to solve</button>
-      <button class="chip" onclick="toggleChip(this,'type')">I want to create something</button>
-      <button class="chip" onclick="toggleChip(this,'type')">I need to make a decision</button>
-      <button class="chip" onclick="toggleChip(this,'type')">I want to understand something</button>
-      <button class="chip" onclick="toggleChip(this,'type')">I need a plan or strategy</button>
-      <button class="chip" onclick="toggleChip(this,'type')">I need help with my career or work</button>
-      <button class="chip" onclick="toggleChip(this,'type')">I'm building a business or product</button>
-      <button class="chip" onclick="toggleChip(this,'type')">I need to write or communicate something</button>
-      <button class="chip" onclick="toggleChip(this,'type')">Something in my personal life</button>
-      <button class="chip" onclick="toggleChip(this,'type')">I'm not sure -- just help me</button>
+      <button class="chip" onclick="toggleChip(this)">I have a problem to solve</button>
+      <button class="chip" onclick="toggleChip(this)">I want to create something</button>
+      <button class="chip" onclick="toggleChip(this)">I need to make a decision</button>
+      <button class="chip" onclick="toggleChip(this)">I want to understand something</button>
+      <button class="chip" onclick="toggleChip(this)">I need a plan or strategy</button>
+      <button class="chip" onclick="toggleChip(this)">Career or work help</button>
+      <button class="chip" onclick="toggleChip(this)">Building a business or product</button>
+      <button class="chip" onclick="toggleChip(this)">Writing or communication</button>
+      <button class="chip" onclick="toggleChip(this)">Personal life</button>
+      <button class="chip" onclick="toggleChip(this)">I'm not sure -- just help me</button>
     </div>
     <div class="err" id="err-type">Please select at least one.</div>
   </div>
 
-  <!-- STEP 3: OUTCOME -->
   <div class="step-wrap">
     <div class="step-label">Step 3 <span class="badge b-req">required</span></div>
-    <div class="step-title">What does a good result look like to you?</div>
-    <div class="step-hint">If this works, what is different? What do you walk away with?</div>
-    <textarea id="s-outcome" placeholder="e.g. I have a clear first step I can actually take this week, and I stop feeling paralyzed every time I think about it..." rows="3"></textarea>
+    <div class="step-title">What does a good result look like?</div>
+    <div class="step-hint">If this works, what is different? Be as specific as you can.</div>
+    <textarea id="s-outcome" placeholder="e.g. I have one clear action I can take this week and I stop feeling paralyzed every time I think about it..." rows="3"></textarea>
     <div class="err" id="err-outcome">Please describe what success looks like.</div>
   </div>
 
-  <!-- STEP 4: CONTEXT -->
   <div class="step-wrap">
     <div class="step-label">Step 4 <span class="badge b-opt">optional but important</span></div>
-    <div class="step-title">Tell me a little about yourself and your situation.</div>
-    <div class="step-hint">Background, experience, constraints, or anything relevant. The more context, the more personalized the output.</div>
-    <textarea id="s-context" placeholder="e.g. I'm a full-time accountant with two kids, limited time on weekends, and about $500 to invest in something. I've tried starting things before but always talk myself out of it..." rows="3"></textarea>
+    <div class="step-title">Tell me about yourself and your situation.</div>
+    <div class="step-hint">Background, experience, constraints, time available, budget -- anything relevant. The more you share, the more personalized everything gets.</div>
+    <textarea id="s-context" placeholder="e.g. I'm a full-time nurse with two kids, I have evenings free, I'm decent with technology but not an expert..." rows="3"></textarea>
   </div>
 
-  <!-- STEP 5: TRIED -->
   <div class="step-wrap">
     <div class="step-label">Step 5 <span class="badge b-opt">optional</span></div>
     <div class="step-title">What have you already tried or considered?</div>
-    <div class="step-hint">So the AI doesn't suggest what you've already ruled out.</div>
-    <textarea id="s-tried" placeholder="e.g. I've looked at dropshipping and affiliate marketing but they felt overwhelming. I've also tried making a plan but never finished it..." rows="3"></textarea>
+    <div class="step-hint">So the AI does not waste your time suggesting things you have already ruled out.</div>
+    <textarea id="s-tried" placeholder="e.g. I tried YouTube tutorials but they were too advanced. I looked at online courses but the price was too high..." rows="3"></textarea>
   </div>
 
-  <!-- STEP 6: FEAR -->
   <div class="step-wrap">
     <div class="step-label">Step 6 <span class="badge b-gold">powerful -- optional</span></div>
-    <div class="step-title">Is there anything you're worried the answer might require?</div>
-    <div class="step-hint">This is the question most people skip. It helps the AI give you honest input instead of comfortable input.</div>
-    <textarea id="s-fear" placeholder="e.g. That I'll need to spend money I don't have, or that I'll have to give up things I'm not ready to give up yet..." rows="2"></textarea>
+    <div class="step-title">What are you worried the answer might require?</div>
+    <div class="step-hint">Most people skip this. It is the most valuable question on the page. It tells the AI to be honest with you instead of comfortable.</div>
+    <textarea id="s-fear" placeholder="e.g. That it will take more time than I have. That I will need skills I don't have yet..." rows="2"></textarea>
   </div>
 
-  <!-- STEP 7: OUTPUT FORMAT -->
   <div class="step-wrap">
-    <div class="step-label">Step 7 <span class="badge b-req">required</span></div>
-    <div class="step-title">How do you want the AI to respond?</div>
-    <div class="step-hint">Pick one.</div>
+    <div class="step-label">Step 7 <span class="badge b-opt">optional</span></div>
+    <div class="step-title">Will this be just for you, or will others use it?</div>
+    <div class="step-hint">If you are building something others will access, there may be technical setup needed first. This helps Fluent flag that before you invest time building.</div>
     <div class="chips">
+      <button class="chip" onclick="selectOne(this,'audience')">Just for me</button>
+      <button class="chip" onclick="selectOne(this,'audience')">Sharing with a few people</button>
+      <button class="chip" onclick="selectOne(this,'audience')">Building something public</button>
+      <button class="chip" onclick="selectOne(this,'audience')">Not sure yet</button>
+    </div>
+  </div>
+
+  <div class="step-wrap">
+    <div class="step-label">Step 8 <span class="badge b-opt">optional</span></div>
+    <div class="step-title">Which AI tools do you already have?</div>
+    <div class="step-hint">Fluent will only recommend tools you can actually use right now.</div>
+    <div class="chips" id="ai-chips">
+      <button class="chip" onclick="toggleChip(this)">Claude (claude.ai)</button>
+      <button class="chip" onclick="toggleChip(this)">ChatGPT</button>
+      <button class="chip" onclick="toggleChip(this)">Google Gemini</button>
+      <button class="chip" onclick="toggleChip(this)">Perplexity</button>
+      <button class="chip" onclick="toggleChip(this)">None yet</button>
+      <button class="chip" onclick="toggleChip(this)">Others</button>
+    </div>
+  </div>
+
+  <div class="step-wrap">
+    <div class="step-label">Step 9 <span class="badge b-req">required</span></div>
+    <div class="step-title">How do you want the AI to respond?</div>
+    <div class="step-hint">This one choice dramatically changes the quality of what you get back.</div>
+    <div class="chips" id="fmt-chips">
       <button class="chip" onclick="selectOne(this,'fmt')">Give me a ready-to-use draft or answer</button>
       <button class="chip" onclick="selectOne(this,'fmt')">Give me three options to choose from</button>
       <button class="chip" onclick="selectOne(this,'fmt')">Walk me through it step by step</button>
       <button class="chip" onclick="selectOne(this,'fmt')">Just give me the direct answer</button>
       <button class="chip" onclick="selectOne(this,'fmt')">Ask me questions first, then respond</button>
-      <button class="chip" onclick="selectOne(this,'fmt')">You decide what format works best</button>
+      <button class="chip" onclick="selectOne(this,'fmt')">You decide what works best</button>
     </div>
     <div class="err" id="err-fmt">Please select a format.</div>
   </div>
 
-  <!-- STEP 8: ONGOING -->
   <div class="step-wrap">
-    <div class="step-label">Step 8 <span class="badge b-opt">optional</span></div>
-    <div class="step-title">Is this a one-time question or something you'll keep working on?</div>
+    <div class="step-label">Step 10 <span class="badge b-opt">optional</span></div>
+    <div class="step-title">Is this a one-time question or ongoing work?</div>
+    <div class="step-hint">This affects whether Fluent recommends a quick conversation or a more permanent setup.</div>
     <div class="chips">
       <button class="chip" onclick="selectOne(this,'scope')">One-time -- I just need an answer</button>
       <button class="chip" onclick="selectOne(this,'scope')">Ongoing -- I'll keep coming back to this</button>
@@ -214,26 +219,25 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
     </div>
   </div>
 
-  <!-- STEP 9: EXPERIENCE -->
   <div class="step-wrap">
-    <div class="step-label">Step 9 <span class="badge b-opt">optional</span></div>
+    <div class="step-label">Step 11 <span class="badge b-opt">optional</span></div>
     <div class="step-title">How much have you used AI before?</div>
+    <div class="step-hint">Fluent adjusts everything it gives you based on your experience level.</div>
     <div class="chips">
       <button class="chip" onclick="selectOne(this,'exp')">Never or barely</button>
       <button class="chip" onclick="selectOne(this,'exp')">A little -- I know the basics</button>
-      <button class="chip" onclick="selectOne(this,'exp')">Regularly but I know I'm not getting the most out of it</button>
+      <button class="chip" onclick="selectOne(this,'exp')">Regularly but not getting the most out of it</button>
       <button class="chip" onclick="selectOne(this,'exp')">Fairly experienced</button>
     </div>
   </div>
 
   <hr>
 
-  <!-- GOLD TOGGLE -->
   <div class="step-wrap">
     <div class="toggle-wrap on" id="tog" onclick="togGold()">
       <div class="toggle-content">
-        <div class="toggle-title">Strategic review -- flag gaps before responding</div>
-        <div class="toggle-sub">Tells the AI to check whether we're solving the right problem before it answers. Highly recommended. This is the most important setting most people never use.</div>
+        <div class="toggle-title">Strategic review -- make sure we're solving the right problem</div>
+        <div class="toggle-sub">Tells the AI to step back before answering and check whether your stated request matches your actual goal. The most valuable setting most people never know exists.</div>
       </div>
       <div class="sw on" id="tsw"><div class="kn on" id="tkn"></div></div>
     </div>
@@ -241,40 +245,68 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
 
   <button class="gen-btn" id="gen-btn" onclick="generate()">Build my AI playbook →</button>
 
-  <!-- LOADING -->
   <div class="loading" id="loading">
     <div class="spinner"></div>
     <div class="loading-text" id="loading-text">Reading your situation...</div>
   </div>
 
-  <!-- OUTPUT -->
   <div class="output" id="output">
 
     <div class="out-section">
       <div class="out-section-label">Your optimized prompt</div>
+      <div class="out-section-desc">Copy this and paste it into Claude or any AI. This is not your words rearranged -- it is your intent translated by an expert into the language AI responds to best.</div>
       <div class="out-card">
         <div class="out-text" id="out-prompt"></div>
         <button class="copy-btn" id="copy-prompt" onclick="copyText('out-prompt','copy-prompt')">Copy prompt</button>
       </div>
     </div>
 
+    <div class="out-section" id="sec-chain" style="display:none;">
+      <div class="out-section-label">Prompt chaining guide</div>
+      <div class="out-section-desc">Your goal is complex enough that one prompt will give you a shallow answer. Use these prompts in sequence for depth at every stage -- paste the first one, get a response, then paste the next.</div>
+      <div class="out-card teal">
+        <div class="out-text" id="out-chain"></div>
+        <button class="copy-btn" id="copy-chain" onclick="copyText('out-chain','copy-chain')">Copy chaining guide</button>
+      </div>
+    </div>
+
     <div class="out-section" id="sec-setup" style="display:none;">
       <div class="out-section-label">Recommended setup</div>
+      <div class="out-section-desc">Where and how to use this prompt for the best results.</div>
       <div class="out-card gold">
         <div class="out-text" id="out-setup"></div>
       </div>
     </div>
 
+    <div class="out-section" id="sec-context-window" style="display:none;">
+      <div class="out-section-label">Managing your AI conversation</div>
+      <div class="out-section-desc">How to keep getting good results as the conversation grows -- and when to start fresh.</div>
+      <div class="out-card">
+        <div class="out-text" id="out-context-window"></div>
+      </div>
+    </div>
+
+    <div class="out-section" id="sec-installer" style="display:none;">
+      <div class="out-section-label">Claude behavior installer</div>
+      <div class="out-section-desc">Add these to Claude's memory settings once. They permanently change how Claude works for you in every conversation -- making it bolder, smarter, and more useful. You only do this once. Think of it as upgrading Claude from a tool that answers questions into a partner that helps you think.</div>
+      <div class="out-card purple">
+        <div class="out-text" id="out-installer"></div>
+        <button class="copy-btn" id="copy-installer" onclick="copyText('out-installer','copy-installer')">Copy behavior installer</button>
+      </div>
+    </div>
+
     <div class="out-section" id="sec-memory" style="display:none;">
-      <div class="out-section-label">What to add to Claude's memory</div>
+      <div class="out-section-label">Your personal context -- add to Claude's memory</div>
+      <div class="out-section-desc">Written specifically from what you shared. Add these to Claude's memory once and every future conversation starts already knowing who you are and how you work best. You will never have to re-explain yourself again.</div>
       <div class="out-card info">
         <div class="out-text" id="out-memory"></div>
-        <button class="copy-btn" id="copy-memory" onclick="copyText('out-memory','copy-memory')">Copy memory updates</button>
+        <button class="copy-btn" id="copy-memory" onclick="copyText('out-memory','copy-memory')">Copy personal context</button>
       </div>
     </div>
 
     <div class="out-section" id="sec-project" style="display:none;">
-      <div class="out-section-label">Project instructions to set up</div>
+      <div class="out-section-label">Claude Project instructions</div>
+      <div class="out-section-desc">For ongoing work. Paste this into a Claude Project and every conversation inside it starts fully briefed -- no re-explaining, no drift.</div>
       <div class="out-card success">
         <div class="out-text" id="out-project"></div>
         <button class="copy-btn" id="copy-project" onclick="copyText('out-project','copy-project')">Copy project instructions</button>
@@ -282,8 +314,9 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
     </div>
 
     <div class="out-section" id="sec-gaps">
-      <div class="out-section-label">What the AI flagged</div>
-      <div class="out-card">
+      <div class="out-section-label">What Fluent flagged</div>
+      <div class="out-section-desc">Gaps, better questions, and your single most important next step.</div>
+      <div class="out-card danger">
         <div class="out-text" id="out-gaps"></div>
       </div>
     </div>
@@ -293,214 +326,175 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
 
 </div>
 
-<footer>Fluent &mdash; Get fluent with AI.</footer>
+<footer>
+  <div class="footer-word">Fluent</div>
+  <div class="footer-tag">Get fluent with AI.</div>
+</footer>
 
 <script>
-var goldOn = true;
-var selectedFmt = '';
-var selectedScope = '';
-var selectedExp = '';
-var selectedTypes = [];
-var loadingMsgs = [
-  'Reading your situation...',
-  'Thinking like an AI expert...',
-  'Building your playbook...',
-  'Optimizing your prompt...',
-  'Almost ready...'
-];
+var goldOn=true,selectedFmt='',selectedScope='',selectedExp='',selectedAudience='';
+var loadingMsgs=['Reading your situation...','Applying expert AI knowledge...','Building your prompt...','Installing your upgrades...','Almost ready...'];
 var loadingInterval;
 
-function toggleChip(el, group) {
-  el.classList.toggle('on');
-}
-
-function selectOne(el, group) {
-  var parent = el.closest('.chips');
-  parent.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('on'); });
+function toggleChip(el){el.classList.toggle('on');}
+function selectOne(el,group){
+  el.closest('.chips').querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});
   el.classList.add('on');
-  if(group==='fmt') { selectedFmt = el.textContent; document.getElementById('err-fmt').style.display='none'; }
-  if(group==='scope') selectedScope = el.textContent;
-  if(group==='exp') selectedExp = el.textContent;
+  if(group==='fmt'){selectedFmt=el.textContent;document.getElementById('err-fmt').style.display='none';}
+  if(group==='scope') selectedScope=el.textContent;
+  if(group==='exp') selectedExp=el.textContent;
+  if(group==='audience') selectedAudience=el.textContent;
 }
-
-function togGold() {
-  goldOn = !goldOn;
-  document.getElementById('tog').classList.toggle('on', goldOn);
-  document.getElementById('tsw').classList.toggle('on', goldOn);
-  document.getElementById('tkn').classList.toggle('on', goldOn);
+function togGold(){
+  goldOn=!goldOn;
+  document.getElementById('tog').classList.toggle('on',goldOn);
+  document.getElementById('tsw').classList.toggle('on',goldOn);
+  document.getElementById('tkn').classList.toggle('on',goldOn);
 }
-
-function g(id){ var e=document.getElementById(id); return e?e.value.trim():''; }
-function se(id,show){ var e=document.getElementById(id); if(e) e.style.display=show?'block':'none'; }
-
-function getSelectedTypes() {
-  var chips = document.getElementById('type-chips').querySelectorAll('.chip.on');
-  return Array.from(chips).map(function(c){ return c.textContent; });
+function getSelected(id){return Array.from(document.getElementById(id).querySelectorAll('.chip.on')).map(function(c){return c.textContent;});}
+function g(id){var e=document.getElementById(id);return e?e.value.trim():'';}
+function se(id,show){var e=document.getElementById(id);if(e)e.style.display=show?'block':'none';}
+function startLoading(){
+  var i=0,el=document.getElementById('loading-text');
+  el.textContent=loadingMsgs[0];
+  loadingInterval=setInterval(function(){i=(i+1)%loadingMsgs.length;el.textContent=loadingMsgs[i];},2500);
 }
-
-function startLoadingAnimation() {
-  var i = 0;
-  var el = document.getElementById('loading-text');
-  el.textContent = loadingMsgs[0];
-  loadingInterval = setInterval(function(){
-    i = (i+1) % loadingMsgs.length;
-    el.textContent = loadingMsgs[i];
-  }, 2000);
-}
-
-function stopLoadingAnimation() {
-  clearInterval(loadingInterval);
-}
-
-function validate() {
-  var valid = true;
-  var need = g('s-need');
-  var outcome = g('s-outcome');
-  var types = getSelectedTypes();
-  se('err-need', !need); if(!need) valid=false;
-  se('err-outcome', !outcome); if(!outcome) valid=false;
-  se('err-type', types.length===0); if(types.length===0) valid=false;
-  se('err-fmt', !selectedFmt); if(!selectedFmt) valid=false;
+function stopLoading(){clearInterval(loadingInterval);}
+function validate(){
+  var valid=true;
+  var need=g('s-need'),outcome=g('s-outcome'),types=getSelected('type-chips');
+  se('err-need',!need);if(!need)valid=false;
+  se('err-outcome',!outcome);if(!outcome)valid=false;
+  se('err-type',types.length===0);if(types.length===0)valid=false;
+  se('err-fmt',!selectedFmt);if(!selectedFmt)valid=false;
   return valid;
 }
 
-async function generate() {
+async function generate(){
   if(!validate()) return;
+  var need=g('s-need'),outcome=g('s-outcome'),context=g('s-context'),tried=g('s-tried'),fear=g('s-fear');
+  var types=getSelected('type-chips'),aiTools=getSelected('ai-chips');
+  var isNovice=selectedExp==='Never or barely'||selectedExp==='A little -- I know the basics';
+  var isPublic=selectedAudience==='Building something public'||selectedAudience==='Sharing with a few people';
+  var isOngoing=selectedScope==='Ongoing -- I\'ll keep coming back to this';
+  var isComplex=types.length>=3||need.length>300||isOngoing;
 
-  var need = g('s-need');
-  var outcome = g('s-outcome');
-  var context = g('s-context');
-  var tried = g('s-tried');
-  var fear = g('s-fear');
-  var types = getSelectedTypes();
+  document.getElementById('gen-btn').disabled=true;
+  se('loading',true);se('output',false);
+  startLoading();
 
-  document.getElementById('gen-btn').disabled = true;
-  se('loading', true);
-  se('output', false);
-  startLoadingAnimation();
+  var systemPrompt=`You are Fluent -- an expert AI consultant and prompt engineer with comprehensive knowledge of how large language models work, how Claude specifically behaves, and what separates transformative AI output from mediocre output.
 
-  var systemPrompt = `You are Fluent -- an expert AI consultant and interpreter with deep knowledge of how AI works, how to prompt it effectively, and how to set up the ideal environment for maximum output. You know everything about Claude specifically: its memory system, Projects, context windows, settings, and how to write prompts that unlock its full capability.
+CRITICAL PRE-GENERATION ASSESSMENT -- do this before generating anything:
+1. Does the user's stated request match their actual goal? If there is a gap, name it in the gaps section and reframe the prompt accordingly.
+2. Is this goal complex enough to need prompt chaining (multiple sequential prompts)? Flag: isComplex=${isComplex}
+3. Does this involve public infrastructure? Flag: isPublic=${isPublic}
+4. What has the user NOT mentioned that an expert would know matters here? Add it.
 
-Your job is to take plain human input and translate it into a complete AI playbook. You are the middleman between a person who may know nothing about AI and the AI itself. You understand both languages perfectly.
+YOUR EXPERT KNOWLEDGE -- apply this actively, do not just organize user input:
+- Role specificity transforms output quality. Generic roles produce generic answers. Specific expert roles with context produce expert answers.
+- Prompt chaining beats single long prompts for complex goals. Sequential focused prompts produce depth at each stage.
+- Context window degrades in long conversations -- early context gets compressed and AI starts drifting. Users need to know when to start fresh.
+- Claude responds differently to different framing. "Help me" produces assistant behavior. "Challenge this," "stress-test this," "find what's wrong with this" produces critical thinking.
+- The most valuable instruction in any prompt is the meta-instruction: what should the AI watch for that the user did not think to mention.
+- Specificity in constraints produces better output than open-ended requests.
+- Most people ask questions when they should request outputs. Transform questions into output requests.
 
-You must return a JSON object with exactly these fields:
+EXPERIENCE LEVEL: ${selectedExp||'unknown -- use plain language'}. ${isNovice?'Use plain English only. No jargon. Use simple analogies. For setup and next steps, give numbered lists not paragraphs.':'Normal language fine.'}
+
+Return a JSON object with exactly these fields -- pure JSON only, no markdown:
 {
-  "prompt": "The fully optimized, ready-to-paste prompt for Claude. This should be expert-level -- not just their words assembled but genuinely transformed. Include goal, context, constraints, output format, the gap-flagging instruction, and strategic review. Write it as if you are a world-class AI prompter who has studied thousands of interactions. Make it specific, rich, and impossible to misinterpret.",
-  "setup": "Practical setup advice for this specific request. Should this be a fresh conversation or a Claude Project? Why? What settings matter -- web search on or off, any other considerations? Be specific and direct.",
-  "needsProject": true or false,
-  "projectInstructions": "If needsProject is true: the exact text they should paste into Claude Project instructions. If false: empty string.",
-  "memoryUpdates": "What this person should add or update in Claude's memory based on what they shared. Write the actual memory entries, not instructions about what to write. If nothing useful, empty string.",
-  "gaps": "What gaps, unstated assumptions, or missing information you noticed that could limit their results. Also flag if there is a better question they should be asking than the one they came with. Be honest and specific -- this is the most valuable part.",
-  "confidence": "One sentence on how well you can help them based on what they shared, and what one piece of additional information would make the output even better."
-}
+  "goalReframe": "If stated request differs from actual goal, one sentence naming the gap. Otherwise empty string.",
+  "prompt": "The fully transformed Claude prompt. Include: (1) specific expert role assignment with real context not generic labels, (2) full situation context including things user implied but did not state, (3) specific goal with concrete success criteria, (4) all constraints including implied ones, (5) output format instruction, (6) gap-flagging line: 'Before you respond, identify what critical information is missing that would significantly change your answer -- ask for it before proceeding', (7) meta-instruction: 'Before answering, check whether my stated request matches my actual goal -- if a better question exists, name it first', (8) boldness instruction: 'Do not tell me what I want to hear. If you know something I am missing or getting wrong, say so directly -- your expertise is more valuable than your agreeableness', (9) knowledge instruction: 'Actively contribute your own expertise. Do not just respond to what I gave you -- add what I should have included.'",
+  "needsChaining": ${isComplex},"chainingGuide": "If needsChaining true: a numbered sequence of 3-5 focused prompts to use in order, each building on the last. Label each with what it accomplishes. Write them as ready-to-paste prompts. If false: empty string.",
+  "setup": "${isNovice?'Numbered list of exactly what to do first, second, third. Use simple analogies for Projects and memory.':'Setup guidance for where and how to use this prompt.'} Always name the specific next action.",
+  "contextWindowGuide": "Plain language guidance on managing this conversation over time. Include: (1) how long conversations degrade -- explain simply as: after a long conversation AI starts forgetting earlier details, like a notepad that runs out of space, (2) the signal that it is time to start fresh -- AI repeats itself, forgets earlier decisions, or gives generic answers, (3) what to do when starting fresh -- paste a brief summary of what was decided, (4) for this specific goal, whether one conversation will likely be enough or whether multiple sessions are expected.",
+  "needsProject": ${isOngoing},"projectInstructions": "If needsProject true: exact text to paste into Claude Project instructions for this specific situation. If false: one sentence on what would trigger needing a Project.",
+  "behaviorInstaller": "Memory entries that permanently upgrade Claude for this user. Write as paste-ready entries. Include ALL of these written for this specific person: (1) Fluent awareness -- user has access to Fluent at getfluent.netlify.app, if their prompt seems weak or incomplete suggest returning to Fluent by name, (2) boldness -- be direct and honest even when uncomfortable, push back when you know better, do not agree just to be agreeable, (3) tool awareness -- when a different tool would serve better than Claude name it specifically, (4) conversation monitoring -- watch for complexity escalation, goal drift, or repeated context and flag it, suggest Projects or Fluent when appropriate, (5) goal alignment -- periodically check whether the conversation is still serving the original goal, (6) memory prompting -- when something permanent and reusable about the user emerges suggest adding it to memory, (7) knowledge contribution -- actively contribute expertise, do not just respond to input.",
+  "personalContext": "Memory entries written from what this person specifically shared. Label: PERSONAL CONTEXT. Include background, constraints, goals, communication style, AI experience. Note: replace any conflicting existing entries, do not stack duplicates.",
+  "gaps": "Three clearly labeled parts: GAPS (missing information in plain language), BETTER QUESTION (smarter question if one exists -- be direct), NEXT STEP (numbered list of exactly what to do right now${isNovice?' -- written for someone who has never used AI before':''}).",
+  "confidence": "One honest plain-language sentence on how well Fluent can help. Then name the single piece of information that would make everything dramatically better."
+}`;
 
-Return ONLY the JSON object. No preamble, no explanation, no markdown fences. Pure JSON only.`;
+  var userMsg=`What they need: ${need}
+Type of help: ${types.join(', ')}
+What success looks like: ${outcome}
+${context?'About them: '+context:''}
+${tried?'Already tried: '+tried:''}
+${fear?'Worried the answer requires: '+fear:''}
+${selectedAudience?'Who will use this: '+selectedAudience:''}
+${aiTools.length?'AI tools they have: '+aiTools.join(', '):''}
+Response format: ${selectedFmt}
+${selectedScope?'One-time or ongoing: '+selectedScope:''}
+AI experience: ${selectedExp||'not specified'}
+Strategic review: ${goldOn?'ON':'OFF'}`;
 
-  var userMsg = `Here is what someone shared with Fluent:
-
-WHAT THEY NEED: ${need}
-
-TYPE OF HELP: ${types.join(', ')}
-
-WHAT SUCCESS LOOKS LIKE: ${outcome}
-
-${context ? 'ABOUT THEM: ' + context : ''}
-${tried ? 'WHAT THEY HAVE TRIED: ' + tried : ''}
-${fear ? 'WHAT THEY ARE AFRAID THE ANSWER MIGHT REQUIRE: ' + fear : ''}
-${selectedFmt ? 'HOW THEY WANT THE RESPONSE: ' + selectedFmt : ''}
-${selectedScope ? 'IS THIS ONGOING OR ONE-TIME: ' + selectedScope : ''}
-${selectedExp ? 'THEIR AI EXPERIENCE LEVEL: ' + selectedExp : ''}
-${goldOn ? 'STRATEGIC REVIEW: ON -- flag gaps and make sure we are solving the right problem' : ''}
-
-Build their complete AI playbook now.`;
-
-  try {
-    var response = await fetch('/.netlify/functions/claude', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-opus-4-6',
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: userMsg }]
-      })
+  try{
+    var response=await fetch('/.netlify/functions/claude',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({system:systemPrompt,messages:[{role:'user',content:userMsg}]})
     });
+    var text=await response.text();
+    var data=JSON.parse(text);
+    var raw=data.content&&data.content[0]&&data.content[0].text?data.content[0].text:'';
+    var clean=raw.replace(/```json|```/g,'').trim();
+    var result=JSON.parse(clean);
 
-    var data = await response.json();
-    var raw = data.content && data.content[0] && data.content[0].text ? data.content[0].text : '';
-    var clean = raw.replace(/```json|```/g,'').trim();
-    var result = JSON.parse(clean);
+    stopLoading();se('loading',false);
+    document.getElementById('gen-btn').disabled=false;
 
-    stopLoadingAnimation();
-    se('loading', false);
-    document.getElementById('gen-btn').disabled = false;
+    var promptText=result.prompt||'';
+    if(result.goalReframe&&result.goalReframe.trim()) promptText='NOTE: '+result.goalReframe+'\n\n'+promptText;
+    document.getElementById('out-prompt').textContent=promptText;
 
-    document.getElementById('out-prompt').textContent = result.prompt || '';
+    if(result.needsChaining&&result.chainingGuide&&result.chainingGuide.trim()){document.getElementById('out-chain').textContent=result.chainingGuide;se('sec-chain',true);}else{se('sec-chain',false);}
+    if(result.setup){document.getElementById('out-setup').textContent=result.setup;se('sec-setup',true);}
+    if(result.contextWindowGuide&&result.contextWindowGuide.trim()){document.getElementById('out-context-window').textContent=result.contextWindowGuide;se('sec-context-window',true);}else{se('sec-context-window',false);}
+    if(result.behaviorInstaller&&result.behaviorInstaller.trim()){document.getElementById('out-installer').textContent=result.behaviorInstaller;se('sec-installer',true);}else{se('sec-installer',false);}
+    if(result.personalContext&&result.personalContext.trim()){document.getElementById('out-memory').textContent=result.personalContext;se('sec-memory',true);}else{se('sec-memory',false);}
+    if(result.needsProject&&result.projectInstructions&&result.projectInstructions.trim()){document.getElementById('out-project').textContent=result.projectInstructions;se('sec-project',true);}else{se('sec-project',false);}
 
-    if(result.setup) {
-      document.getElementById('out-setup').textContent = result.setup;
-      se('sec-setup', true);
-    }
+    var gapsText='';
+    if(result.gaps)gapsText+=result.gaps;
+    if(result.confidence)gapsText+='\n\n'+result.confidence;
+    document.getElementById('out-gaps').textContent=gapsText.trim();
 
-    if(result.memoryUpdates && result.memoryUpdates.trim()) {
-      document.getElementById('out-memory').textContent = result.memoryUpdates;
-      se('sec-memory', true);
-    } else {
-      se('sec-memory', false);
-    }
+    se('output',true);
+    document.getElementById('output').scrollIntoView({behavior:'smooth',block:'start'});
 
-    if(result.needsProject && result.projectInstructions && result.projectInstructions.trim()) {
-      document.getElementById('out-project').textContent = result.projectInstructions;
-      se('sec-project', true);
-    } else {
-      se('sec-project', false);
-    }
-
-    var gapsText = '';
-    if(result.gaps) gapsText += result.gaps;
-    if(result.confidence) gapsText += '\n\n' + result.confidence;
-    document.getElementById('out-gaps').textContent = gapsText.trim();
-
-    se('output', true);
-    document.getElementById('output').scrollIntoView({behavior:'smooth', block:'start'});
-
-  } catch(err) {
-    stopLoadingAnimation();
-    se('loading', false);
-    document.getElementById('gen-btn').disabled = false;
-    document.getElementById('out-prompt').textContent = 'Something went wrong. Please try again.';
-    se('sec-setup', false);
-    se('sec-memory', false);
-    se('sec-project', false);
-    document.getElementById('out-gaps').textContent = 'Error: ' + err.message;
-    se('output', true);
+  }catch(err){
+    stopLoading();se('loading',false);
+    document.getElementById('gen-btn').disabled=false;
+    document.getElementById('out-prompt').textContent='Something went wrong. Please try again.';
+    document.getElementById('out-gaps').textContent='Error: '+err.message;
+    ['sec-chain','sec-setup','sec-context-window','sec-installer','sec-memory','sec-project'].forEach(function(s){se(s,false);});
+    se('output',true);
   }
 }
 
-function copyText(textId, btnId) {
-  var text = document.getElementById(textId).textContent;
-  var btn = document.getElementById(btnId);
-  var orig = btn.textContent;
+function copyText(textId,btnId){
+  var text=document.getElementById(textId).textContent;
+  var btn=document.getElementById(btnId);
+  var orig=btn.textContent;
   navigator.clipboard.writeText(text).then(function(){
-    btn.textContent = 'Copied';
-    setTimeout(function(){ btn.textContent = orig; }, 2000);
+    btn.textContent='Copied';
+    setTimeout(function(){btn.textContent=orig;},2000);
   }).catch(function(){
-    var ta = document.createElement('textarea');
-    ta.value = text; document.body.appendChild(ta); ta.select();
-    document.execCommand('copy'); document.body.removeChild(ta);
-    btn.textContent = 'Copied';
-    setTimeout(function(){ btn.textContent = orig; }, 2000);
+    var ta=document.createElement('textarea');ta.value=text;
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    btn.textContent='Copied';
+    setTimeout(function(){btn.textContent=orig;},2000);
   });
 }
 
-function resetAll() {
-  document.querySelectorAll('textarea').forEach(function(t){ t.value=''; });
-  document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('on'); });
-  selectedFmt=''; selectedScope=''; selectedExp=''; selectedTypes=[];
-  se('output', false);
-  se('loading', false);
-  document.getElementById('gen-btn').disabled = false;
-  window.scrollTo({top:0, behavior:'smooth'});
+function resetAll(){
+  document.querySelectorAll('textarea').forEach(function(t){t.value='';});
+  document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});
+  selectedFmt='';selectedScope='';selectedExp='';selectedAudience='';
+  se('output',false);se('loading',false);
+  document.getElementById('gen-btn').disabled=false;
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
 </body>
