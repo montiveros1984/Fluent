@@ -387,6 +387,11 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
       </div>
     </div>
 
+    <div class="loading" id="setup-loading" style="display:none;margin-top:1.5rem;">
+      <div class="spinner"></div>
+      <div class="loading-text">Loading your full setup...</div>
+    </div>
+
     <button class="reset-btn" onclick="resetAll()">Start over</button>
   </div>
 
@@ -484,96 +489,49 @@ async function generate(){
   var isOngoing=selectedScope==='Ongoing -- I\'ll keep coming back to this';
   var isComplex=types.length>=3||need.length>250||isOngoing||types.indexOf('Building a business or product')>-1;
 
+  var userMsg='Goal: '+need+'\nType: '+types.join(', ')+'\nSuccess: '+outcome
+    +(context?'\nAbout them: '+context:'')
+    +(tried?'\nTried: '+tried:'')
+    +(fear?'\nWorried about: '+fear:'')
+    +'\nAudience: '+selectedAudience
+    +(aiTools.length?'\nAI tools: '+aiTools.join(', '):'')
+    +'\nFormat: '+selectedFmt
+    +(selectedScope?'\nScope: '+selectedScope:'')
+    +'\nExperience: '+selectedExp
+    +'\nStrategic review: '+(goldOn?'ON':'OFF');
+
+  var callPayload={userMsg:userMsg,isNovice:isNovice,isPublic:isPublic,isComplex:isComplex,isOngoing:isOngoing,selectedExp:selectedExp};
+
   document.getElementById('gen-btn').disabled=true;
-  se('loading',true);se('output',false);
+  se('loading',true);se('output',false);se('setup-loading',false);
   startLoading();
 
-  var systemPrompt=`You are Fluent -- an AI prompt expert and interpreter. Your job is to take plain human input and generate a scaled, right-sized AI playbook. The most important rule: match the output to the complexity of the goal. Simple goals need a great prompt and a clear next step -- nothing more. Complex ongoing goals need the full suite.
-
-COMPLEXITY LEVEL: ${isComplex?'HIGH -- generate full suite':'LOW -- generate prompt, gaps, and useful-to-know only. Do not generate chaining, installer, memory, or project sections.'}
-EXPERIENCE: ${selectedExp}. ${isNovice?'Plain English only. No jargon. Simple analogies.':'Normal language.'}
-PUBLIC BUILD: ${isPublic?'YES -- flag infrastructure needs in gaps.':'No.'}
-ONGOING: ${isOngoing?'YES -- generate project instructions.':'No.'}
-
-PROMPT ENGINEERING RULES TO APPLY:
-- Assign a specific expert role, not a generic label
-- Transform their input -- do not just rephrase it
-- Include meta-instruction: check whether stated request matches actual goal
-- Include boldness instruction: be direct, push back, do not just agree
-- Include gap-flagging: ask for missing critical info before proceeding
-- Match framing to goal: use "challenge this" or "evaluate" for analytical tasks, "help me" for supportive tasks
-
-CONVERSATION REALITY -- state this accurately if included:
-- AI conversations do not save history between sessions. Only memory entries and Project instructions persist.
-- If a conversation gets very long, AI starts losing track of earlier details -- like a notepad running out of space.
-- The solution when that happens: copy a brief summary of key decisions, start a new conversation, paste the summary to catch the AI up quickly.
-- Memory entries mean the AI always knows your background -- but not what was said in previous conversations.
-
-Return pure JSON only. No markdown. No text outside the JSON:
-{
-  "goalSummary": "5-8 word plain summary of their actual goal",
-  "prompt": "Fully transformed prompt with expert role, context, goal, constraints, output format, gap-flagging, meta-check, boldness instruction",
-  "wtpInstruction": "One plain sentence: open your AI of choice, start a new conversation, paste this prompt and send it.",
-  "gaps": "GAPS: [missing info in plain language]\n\nBETTER QUESTION: [smarter framing if one exists, or skip this section]\n\nNEXT STEP: [numbered list of what to do right now]",
-  "usefulToKnow": "${isNovice||selectedExp==='Regularly but not getting the most out of it'?'3-4 short plain-language tips that would help this specific user get better results from AI. Cover: why specific questions beat vague ones, what to do when AI gives a wrong or unhelpful answer, and one tip specific to their goal type. No jargon.':''}",
-  "setup": "${isComplex?'Setup guidance for this specific goal. General language -- not specific to any one AI tool.':''}",
-  "needsChaining": ${isComplex},
-  "chainingGuide": "${isComplex?'If goal has multiple phases: numbered sequence of 3-4 focused prompts. Label what each accomplishes. Ready to paste. Otherwise empty string.':''}",
-  "needsProject": ${isOngoing},
-  "projectInstructions": "${isOngoing?'Exact text to paste into a Project for this situation. Covers: who the user is, what the project is, what is already decided, how AI should behave.':''}",
-  "behaviorInstaller": "${isComplex?'Memory entries to permanently upgrade AI behavior for this user. Include: Fluent awareness, boldness, tool awareness, conversation monitoring, goal alignment, memory prompting. Written specifically for this person.':''}",
-  "personalContext": "${isComplex?'Memory entries from what this person shared. Label PERSONAL CONTEXT. Cover background, constraints, goals, communication style, AI experience. Note: replace conflicting entries.':''}"
-}`;
-
-  var userMsg=`Goal: ${need}
-Type: ${types.join(', ')}
-Success: ${outcome}
-${context?'About them: '+context:''}
-${tried?'Tried: '+tried:''}
-${fear?'Worried about: '+fear:''}
-Audience: ${selectedAudience}
-${aiTools.length?'AI tools: '+aiTools.join(', '):''}
-Format: ${selectedFmt}
-${selectedScope?'Scope: '+selectedScope:''}
-Experience: ${selectedExp}
-Strategic review: ${goldOn?'ON':'OFF'}`;
-
+  // --- Call 1: prompt + gaps ---
+  var goalSummary='';
   try{
-    var response=await fetch('/.netlify/functions/claude',{
+    var r1=await fetch('/.netlify/functions/claude-prompt',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({system:systemPrompt,messages:[{role:'user',content:userMsg}]})
+      body:JSON.stringify(callPayload)
     });
-    var text=await response.text();
-    var data=JSON.parse(text);
-    var raw=data.content&&data.content[0]&&data.content[0].text?data.content[0].text:'';
-    var clean=raw.replace(/```json|```/g,'').trim();
-    var js=clean.indexOf('{'),je=clean.lastIndexOf('}');
-    if(js!==-1&&je!==-1)clean=clean.substring(js,je+1);
-    var result=JSON.parse(clean);
+    if(!r1.ok)throw new Error('Prompt call failed: '+r1.status);
+    var result1=await r1.json();
+    if(result1.error)throw new Error(result1.error);
 
     stopLoading();se('loading',false);
-    document.getElementById('gen-btn').disabled=false;
 
-    document.getElementById('out-confirm-goal').textContent=result.goalSummary||need.substring(0,50);
-    document.getElementById('out-prompt').textContent=result.prompt||'';
-    document.getElementById('wtp-text').textContent=result.wtpInstruction||'Open your AI tool, start a new conversation, paste your prompt, and send it.';
+    goalSummary=result1.goalSummary||need.substring(0,50);
+    document.getElementById('out-confirm-goal').textContent=goalSummary;
+    document.getElementById('out-prompt').textContent=result1.prompt||'';
+    document.getElementById('wtp-text').textContent=result1.wtpInstruction||'Open your AI tool, start a new conversation, paste your prompt, and send it.';
 
-    var gaps=result.gaps;
+    var gaps=result1.gaps;
     if(typeof gaps==='object')gaps=Object.entries(gaps).map(function(e){return e[0].toUpperCase()+':\n'+e[1];}).join('\n\n');
     document.getElementById('out-gaps').textContent=(gaps||'').trim();
 
-    var hasExpand=false;
-
-    if(result.usefulToKnow&&result.usefulToKnow.trim()){document.getElementById('out-useful').textContent=result.usefulToKnow;se('sec-useful',true);hasExpand=true;}else{se('sec-useful',false);}
-    if(result.setup&&result.setup.trim()){document.getElementById('out-setup').textContent=result.setup;se('sec-setup',true);hasExpand=true;}else{se('sec-setup',false);}
-    if(result.needsChaining&&result.chainingGuide&&result.chainingGuide.trim()){document.getElementById('out-chain').textContent=result.chainingGuide;se('sec-chain',true);hasExpand=true;}else{se('sec-chain',false);}
-    if(result.behaviorInstaller&&result.behaviorInstaller.trim()){document.getElementById('out-installer').textContent=result.behaviorInstaller;se('sec-installer',true);hasExpand=true;}else{se('sec-installer',false);}
-    if(result.personalContext&&result.personalContext.trim()){document.getElementById('out-memory').textContent=result.personalContext;se('sec-memory',true);hasExpand=true;}else{se('sec-memory',false);}
-    if(result.needsProject&&result.projectInstructions&&result.projectInstructions.trim()){document.getElementById('out-project').textContent=result.projectInstructions;se('sec-project',true);hasExpand=true;}else{se('sec-project',false);}
-
-    se('expand-section',hasExpand);
-
+    // Show output immediately after call 1
+    ['sec-useful','sec-setup','sec-chain','sec-installer','sec-memory','sec-project'].forEach(function(s){se(s,false);});
+    se('expand-section',false);
     se('output',true);
     document.getElementById('output').scrollIntoView({behavior:'smooth',block:'start'});
 
@@ -581,12 +539,42 @@ Strategic review: ${goldOn?'ON':'OFF'}`;
     stopLoading();se('loading',false);
     document.getElementById('gen-btn').disabled=false;
     document.getElementById('out-confirm-goal').textContent=need.substring(0,50);
-    document.getElementById('out-prompt').textContent='Something went wrong. Please try again. If this keeps happening, try shortening your answers slightly.';
+    document.getElementById('out-prompt').textContent='Something went wrong generating your prompt. Please try again.';
     document.getElementById('out-gaps').textContent='Technical detail: '+err.message;
     document.getElementById('wtp-text').textContent='Open your AI tool, start a new conversation, paste your prompt, and send it.';
-    ['sec-useful','sec-setup','sec-chain','sec-installer','sec-memory','sec-project'].forEach(function(s){se(s,false);});
     se('expand-section',false);
     se('output',true);
+    return;
+  }
+
+  // --- Call 2: setup sections ---
+  se('setup-loading',true);
+  try{
+    var r2=await fetch('/.netlify/functions/claude-setup',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(Object.assign({},callPayload,{goalSummary:goalSummary}))
+    });
+    if(!r2.ok)throw new Error('Setup call failed: '+r2.status);
+    var result2=await r2.json();
+    if(result2.error)throw new Error(result2.error);
+
+    se('setup-loading',false);
+    document.getElementById('gen-btn').disabled=false;
+
+    var hasExpand=false;
+    if(result2.usefulToKnow&&result2.usefulToKnow.trim()){document.getElementById('out-useful').textContent=result2.usefulToKnow;se('sec-useful',true);hasExpand=true;}else{se('sec-useful',false);}
+    if(result2.setup&&result2.setup.trim()){document.getElementById('out-setup').textContent=result2.setup;se('sec-setup',true);hasExpand=true;}else{se('sec-setup',false);}
+    if(result2.needsChaining&&result2.chainingGuide&&result2.chainingGuide.trim()){document.getElementById('out-chain').textContent=result2.chainingGuide;se('sec-chain',true);hasExpand=true;}else{se('sec-chain',false);}
+    if(result2.behaviorInstaller&&result2.behaviorInstaller.trim()){document.getElementById('out-installer').textContent=result2.behaviorInstaller;se('sec-installer',true);hasExpand=true;}else{se('sec-installer',false);}
+    if(result2.personalContext&&result2.personalContext.trim()){document.getElementById('out-memory').textContent=result2.personalContext;se('sec-memory',true);hasExpand=true;}else{se('sec-memory',false);}
+    if(result2.needsProject&&result2.projectInstructions&&result2.projectInstructions.trim()){document.getElementById('out-project').textContent=result2.projectInstructions;se('sec-project',true);hasExpand=true;}else{se('sec-project',false);}
+    se('expand-section',hasExpand);
+
+  }catch(err){
+    se('setup-loading',false);
+    document.getElementById('gen-btn').disabled=false;
+    // Setup sections silently fail -- prompt is already shown, don't disrupt the user
   }
 }
 
@@ -610,7 +598,7 @@ function resetAll(){
   document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});
   document.querySelectorAll('.chips-wrap').forEach(function(w){w.classList.remove('has-error');});
   selectedFmt='';selectedScope='';selectedExp='';selectedAudience='';
-  se('output',false);se('loading',false);se('err-block',false);
+  se('output',false);se('loading',false);se('setup-loading',false);se('err-block',false);
   document.getElementById('gen-btn').disabled=false;
   document.getElementById('expand-content').classList.remove('open');
   document.getElementById('expand-arrow').classList.remove('open');
