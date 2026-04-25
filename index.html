@@ -137,7 +137,7 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
 
 <div class="progress-bar">
   <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-  <div class="progress-label" id="progress-label">0 of 11 steps completed</div>
+  <div class="progress-label" id="progress-label">0 of 14 steps completed</div>
 </div>
 
 <div class="intake">
@@ -243,6 +243,33 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
 
   <div class="step-wrap">
     <div class="step-label">Step 10 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--bg2);color:var(--text3);font-family:system-ui">optional</span></div>
+    <div class="step-title">Who is the final output for?</div>
+    <div class="step-hint">Not you -- who will read or use the result? This changes how the AI writes.</div>
+    <div class="chips">
+      <button class="chip" onclick="selectOne(this,'outaudience');updateProgress()">Just me</button>
+      <button class="chip" onclick="selectOne(this,'outaudience');updateProgress()">A specific person (boss, client, partner)</button>
+      <button class="chip" onclick="selectOne(this,'outaudience');updateProgress()">A general audience</button>
+      <button class="chip" onclick="selectOne(this,'outaudience');updateProgress()">A team or group</button>
+      <button class="chip" onclick="selectOne(this,'outaudience');updateProgress()">Not sure yet</button>
+    </div>
+  </div>
+
+  <div class="step-wrap">
+    <div class="step-label">Step 11 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--bg2);color:var(--text3);font-family:system-ui">optional</span></div>
+    <div class="step-title">Do you have an example of what good output looks like?</div>
+    <div class="step-hint">A writing style, a format, a previous response you liked -- anything that shows the AI what you are going for.</div>
+    <textarea id="s-example" placeholder="e.g. Something like the email my manager sent last week -- clear, direct, no fluff..." rows="3" oninput="updateProgress()"></textarea>
+  </div>
+
+  <div class="step-wrap">
+    <div class="step-label">Step 12 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--bg2);color:var(--text3);font-family:system-ui">optional</span></div>
+    <div class="step-title">What do you NOT want in the response?</div>
+    <div class="step-hint">Tone, format, length, approach -- anything the AI should avoid.</div>
+    <textarea id="s-avoid" placeholder="e.g. Don't make it sound corporate. No bullet points. Avoid generic advice." rows="3" oninput="updateProgress()"></textarea>
+  </div>
+
+  <div class="step-wrap">
+    <div class="step-label">Step 13 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--bg2);color:var(--text3);font-family:system-ui">optional</span></div>
     <div class="step-title">Is this a one-time question or ongoing work?</div>
     <div class="step-hint">This affects whether Fluent recommends a quick conversation or a more permanent setup.</div>
     <div class="chips">
@@ -253,7 +280,7 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
   </div>
 
   <div class="step-wrap">
-    <div class="step-label">Step 11 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);font-family:system-ui">required</span></div>
+    <div class="step-label">Step 14 <span style="font-size:10px;border-radius:4px;padding:2px 7px;background:var(--info-bg);color:var(--info);font-family:system-ui">required</span></div>
     <div class="step-title">How much have you used AI before?</div>
     <div class="step-hint">Fluent adjusts everything based on your experience. Be honest -- there is no wrong answer and it only makes your results better.</div>
     <div class="chips-wrap" id="exp-wrap">
@@ -403,7 +430,7 @@ footer{text-align:center;padding:2rem 1.5rem;border-top:0.5px solid var(--border
 </footer>
 
 <script>
-var goldOn=true,selectedFmt='',selectedScope='',selectedExp='',selectedAudience='';
+var goldOn=true,selectedFmt='',selectedScope='',selectedExp='',selectedAudience='',selectedOutputAudience='';
 var loadingMsgs=['Reading your situation...','Building your prompt...','Scaling to your needs...','Almost ready...'];
 var loadingInterval;
 
@@ -418,11 +445,14 @@ function updateProgress(){
   if(selectedAudience)filled++;
   if(getSelected('ai-chips').length>0)filled++;
   if(selectedFmt)filled++;
+  if(selectedOutputAudience)filled++;
+  if(g('s-example'))filled++;
+  if(g('s-avoid'))filled++;
   if(selectedScope)filled++;
   if(selectedExp)filled++;
-  var pct=Math.round((filled/11)*100);
+  var pct=Math.round((filled/14)*100);
   document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-label').textContent=filled+' of 11 steps completed';
+  document.getElementById('progress-label').textContent=filled+' of 14 steps completed';
 }
 
 function toggleChip(el){el.classList.toggle('on');}
@@ -433,6 +463,7 @@ function selectOne(el,group){
   if(group==='scope')selectedScope=el.textContent;
   if(group==='exp'){selectedExp=el.textContent;var w=document.getElementById('exp-wrap');if(w)w.classList.remove('has-error');}
   if(group==='audience'){selectedAudience=el.textContent;var w=document.getElementById('audience-wrap');if(w)w.classList.remove('has-error');}
+  if(group==='outaudience')selectedOutputAudience=el.textContent;
   updateProgress();
 }
 function togGold(){
@@ -483,6 +514,7 @@ function validate(){
 async function generate(){
   if(!validate())return;
   var need=g('s-need'),outcome=g('s-outcome'),context=g('s-context'),tried=g('s-tried'),fear=g('s-fear');
+  var example=g('s-example'),avoid=g('s-avoid');
   var types=getSelected('type-chips'),aiTools=getSelected('ai-chips');
   var isNovice=selectedExp==='Never or barely'||selectedExp==='A little -- I know the basics';
   var isPublic=selectedAudience==='Building something public'||selectedAudience==='Sharing with a few people';
@@ -496,11 +528,14 @@ async function generate(){
     +'\nAudience: '+selectedAudience
     +(aiTools.length?'\nAI tools: '+aiTools.join(', '):'')
     +'\nFormat: '+selectedFmt
+    +(selectedOutputAudience?'\nOutput for: '+selectedOutputAudience:'')
+    +(example?'\nExample of good output: '+example:'')
+    +(avoid?'\nAvoid in response: '+avoid:'')
     +(selectedScope?'\nScope: '+selectedScope:'')
     +'\nExperience: '+selectedExp
     +'\nStrategic review: '+(goldOn?'ON':'OFF');
 
-  var callPayload={userMsg:userMsg,isNovice:isNovice,isPublic:isPublic,isComplex:isComplex,isOngoing:isOngoing,selectedExp:selectedExp};
+  var callPayload={userMsg:userMsg,isNovice:isNovice,isPublic:isPublic,isComplex:isComplex,isOngoing:isOngoing,selectedExp:selectedExp,outputAudience:selectedOutputAudience,example:example,avoid:avoid};
 
   document.getElementById('gen-btn').disabled=true;
   se('loading',true);se('output',false);se('setup-loading',false);
@@ -597,7 +632,7 @@ function resetAll(){
   document.querySelectorAll('textarea').forEach(function(t){t.value='';t.classList.remove('has-error');});
   document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});
   document.querySelectorAll('.chips-wrap').forEach(function(w){w.classList.remove('has-error');});
-  selectedFmt='';selectedScope='';selectedExp='';selectedAudience='';
+  selectedFmt='';selectedScope='';selectedExp='';selectedAudience='';selectedOutputAudience='';
   se('output',false);se('loading',false);se('setup-loading',false);se('err-block',false);
   document.getElementById('gen-btn').disabled=false;
   document.getElementById('expand-content').classList.remove('open');

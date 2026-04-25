@@ -22,7 +22,7 @@ exports.handler = async function(event) {
     return { statusCode: 400, headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ error: 'Invalid request body' }) };
   }
 
-  const { userMsg, isNovice, isPublic, isComplex, selectedExp } = body;
+  const { userMsg, isNovice, isPublic, isComplex, selectedExp, outputAudience, example, avoid } = body;
 
   if (!userMsg) {
     return { statusCode: 400, headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ error: 'Missing userMsg' }) };
@@ -33,6 +33,9 @@ exports.handler = async function(event) {
 COMPLEXITY: ${isComplex ? 'HIGH' : 'LOW'}
 EXPERIENCE: ${selectedExp || 'unknown'}. ${isNovice ? 'Plain English only. No jargon.' : 'Normal language.'}
 PUBLIC BUILD: ${isPublic ? 'YES -- flag infrastructure needs in gaps.' : 'No.'}
+${outputAudience ? `OUTPUT AUDIENCE: ${outputAudience} -- write the generated prompt so the AI tailors its output tone and register for this reader.` : ''}
+${example ? `EXAMPLE OF GOOD OUTPUT: The user provided this reference -- incorporate matching style/format cues into the prompt: "${example}"` : ''}
+${avoid ? `AVOID IN RESPONSE: Embed these constraints directly into the generated prompt: "${avoid}"` : ''}
 
 PROMPT ENGINEERING RULES:
 - Assign a specific expert role, not a generic label
@@ -41,6 +44,10 @@ PROMPT ENGINEERING RULES:
 - Include boldness instruction: be direct, push back, do not just agree
 - Include gap-flagging: ask for missing critical info before proceeding
 - Match framing to goal: use "challenge this" or "evaluate" for analytical tasks, "help me" for supportive tasks
+
+ALWAYS INCLUDE THESE TWO INSTRUCTIONS VERBATIM IN THE GENERATED PROMPT:
+1. "Before giving your final answer, think through the problem step by step. Do not skip this -- the thinking improves the output even if you do not show all of it."
+2. "Before responding, review your own answer for gaps, errors, or anything that seems off. Correct it before delivering."
 
 Return pure JSON only. No markdown. No text outside the JSON:
 {

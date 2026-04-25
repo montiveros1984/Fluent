@@ -22,7 +22,7 @@ exports.handler = async function(event) {
     return { statusCode: 400, headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ error: 'Invalid request body' }) };
   }
 
-  const { userMsg, isNovice, isPublic, isComplex, isOngoing, selectedExp, goalSummary } = body;
+  const { userMsg, isNovice, isPublic, isComplex, isOngoing, selectedExp, goalSummary, outputAudience, example, avoid } = body;
 
   if (!userMsg) {
     return { statusCode: 400, headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ error: 'Missing userMsg' }) };
@@ -34,6 +34,13 @@ COMPLEXITY: ${isComplex ? 'HIGH -- generate all applicable sections' : 'LOW -- g
 EXPERIENCE: ${selectedExp || 'unknown'}. ${isNovice ? 'Plain English only. No jargon. Simple analogies.' : 'Normal language.'}
 PUBLIC BUILD: ${isPublic ? 'YES.' : 'No.'}
 ONGOING: ${isOngoing ? 'YES -- generate projectInstructions.' : 'No -- leave projectInstructions empty.'}
+${outputAudience ? `OUTPUT AUDIENCE: ${outputAudience} -- factor this into setup and memory recommendations.` : ''}
+${example ? `EXAMPLE OF GOOD OUTPUT provided by user: "${example}" -- reference this when describing setup or style guidance.` : ''}
+${avoid ? `USER WANTS TO AVOID: "${avoid}" -- include this as a standing constraint in behavior installer and project instructions.` : ''}
+
+ALWAYS INCLUDE THESE TWO INSTRUCTIONS IN ANY GENERATED PROMPTS OR PROJECT INSTRUCTIONS:
+1. "Before giving your final answer, think through the problem step by step. Do not skip this -- the thinking improves the output even if you do not show all of it."
+2. "Before responding, review your own answer for gaps, errors, or anything that seems off. Correct it before delivering."
 
 CONVERSATION REALITY (include where relevant):
 - AI conversations do not save history between sessions. Only memory entries and Project instructions persist.
